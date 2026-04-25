@@ -9,17 +9,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#FBFAF7;
-    --bg-2:#F4F2ED;
-    --bg-3:#EAE7DF;
-    --ink:#1A1A1A;
-    --ink-dim:#6B6B6B;
-    --ink-mid:#3A3A3A;
-    --accent:#0F3557;
-    --accent-2:#1F5280;
-    --accent-glow:rgba(15,53,87,0.18);
-    --line:rgba(26,26,26,0.10);
-    --card:rgba(255,255,255,0.70);
+    --bg:#FFFFFF;
+    --bg-2:#F4F6FB;
+    --bg-3:#EAEEF6;
+    --ink:#0A1530;
+    --ink-dim:#5C6679;
+    --ink-mid:#3A4660;
+    --accent:#163C70;
+    --accent-2:#0F2A5E;
+    --accent-glow:rgba(22,60,112,0.25);
+    --line:rgba(10,21,48,0.10);
+    --card:#FFFFFF;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
@@ -30,17 +30,17 @@
     line-height:1.6;
     overflow-x:hidden;
     background-image:
-      radial-gradient(ellipse 80% 50% at 50% -10%,rgba(15,53,87,0.08),transparent 50%),
-      radial-gradient(ellipse 60% 40% at 100% 20%,rgba(15,53,87,0.04),transparent 60%);
+      radial-gradient(ellipse 80% 50% at 50% -10%,rgba(22,60,112,0.10),transparent 50%),
+      radial-gradient(ellipse 60% 40% at 100% 20%,rgba(22,60,112,0.06),transparent 60%);
   }
-  .display{font-family:'Plus Jakarta Sans','Inter',system-ui,sans-serif;letter-spacing:-0.028em;font-weight:700}
+  .display{font-family:'Plus Jakarta Sans',sans-serif;letter-spacing:-0.025em}
   .container{max-width:1240px;margin:0 auto;padding:0 24px}
 
   /* NAV */
   nav{
     position:fixed;top:0;left:0;right:0;z-index:100;
     backdrop-filter:blur(16px);
-    background:var(--bg);
+    background:rgba(255,255,255,0.85);
     border-bottom:1px solid var(--line);
   }
   .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:8px 24px;max-width:1240px;margin:0 auto}
@@ -53,7 +53,7 @@
   .nav-links a{color:var(--ink-mid);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
   .nav-links a:hover{color:var(--ink)}
   .nav-cta{background:var(--accent);color:#fff!important;padding:9px 18px;border-radius:999px;font-weight:600}
-  .nav-cta:hover{background:var(--accent-2)}
+  .nav-cta:hover{background:#0F2A5E}
   @media(max-width:880px){.nav-links a:not(.nav-cta){display:none}}
 
   /* HERO */
@@ -64,17 +64,17 @@
     display:inline-flex;align-items:center;gap:10px;
     font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent-2);
     margin-bottom:28px;font-weight:600;
-    padding:8px 14px;border:1px solid rgba(15,53,87,0.20);
-    border-radius:999px;background:rgba(15,53,87,0.06);
+    padding:8px 14px;border:1px solid rgba(22,60,112,0.30);
+    border-radius:999px;background:rgba(22,60,112,0.06);
   }
-  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--accent-2);animation:pulse 2s ease-in-out infinite}
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 2s ease-in-out infinite}
   @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
   h1.hero-title{
     font-size:clamp(32px,4.5vw,58px);line-height:1.08;font-weight:700;
     margin-bottom:28px;letter-spacing:-0.03em;
   }
   h1.hero-title .grad{
-    background:linear-gradient(135deg,var(--accent-2) 0%,var(--accent) 100%);
+    background:linear-gradient(135deg,#0F2A5E 0%,#163C70 100%);
     -webkit-background-clip:text;background-clip:text;color:transparent;
   }
   .hero-sub{font-size:18px;color:var(--ink-mid);max-width:620px;margin-bottom:40px;line-height:1.65}
@@ -86,9 +86,9 @@
     transition:transform .2s,background .2s,box-shadow .2s;cursor:pointer;border:none;
   }
   .btn-primary{background:var(--accent);color:#fff;box-shadow:0 8px 30px var(--accent-glow)}
-  .btn-primary:hover{transform:translateY(-2px);background:var(--accent-2)}
+  .btn-primary:hover{transform:translateY(-2px);background:#0F2A5E}
   .btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
-  .btn-ghost:hover{border-color:var(--ink-mid);background:rgba(0,0,0,0.03)}
+  .btn-ghost:hover{border-color:var(--ink-mid);background:rgba(10,21,48,0.03)}
 
   /* Hero visual */
   .hero-visual{
@@ -96,22 +96,23 @@
     display:grid;place-items:center;
     border-radius:24px;overflow:hidden;
     border:1px solid var(--line);
+    box-shadow:0 18px 50px rgba(10,21,48,0.10);
   }
   .hero-visual::before{
     content:"";position:absolute;inset:0;z-index:3;pointer-events:none;
-    background:linear-gradient(180deg,transparent 40%,rgba(5,11,31,0.7) 100%),
-               linear-gradient(135deg,rgba(30,136,255,0.15),transparent 50%);
+    background:linear-gradient(180deg,transparent 50%,rgba(5,11,31,0.55) 100%),
+               linear-gradient(135deg,rgba(22,60,112,0.10),transparent 50%);
   }
   .hero-img{
     width:100%;height:100%;object-fit:cover;
-    filter:saturate(1.1) brightness(0.75);
+    filter:saturate(1.1) brightness(0.92);
     animation:slow-zoom 14s ease-in-out infinite alternate;
   }
   @keyframes slow-zoom{from{transform:scale(1)}to{transform:scale(1.06)}}
   .hero-caption{
     position:absolute;bottom:24px;left:24px;right:24px;z-index:4;
     color:#fff;font-size:13px;letter-spacing:0.1em;text-transform:uppercase;
-    font-weight:600;opacity:0.9;
+    font-weight:600;opacity:0.95;
   }
 
   /* STATS strip */
@@ -120,16 +121,17 @@
     border:1px solid var(--line);border-radius:20px;
     background:var(--card);backdrop-filter:blur(10px);
     padding:8px;
+    box-shadow:0 4px 20px rgba(10,21,48,0.04);
   }
   .stats > div{
     padding:32px 20px;text-align:center;
     border-radius:14px;transition:background .2s;
   }
-  .stats > div:hover{background:rgba(15,53,87,0.05)}
+  .stats > div:hover{background:rgba(22,60,112,0.06)}
   @media(max-width:900px){.stats{grid-template-columns:repeat(2,1fr)}}
   .stat-num{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(32px,3.5vw,44px);font-weight:800;color:var(--ink);letter-spacing:-0.03em;line-height:1}
   .stat-num .grad{
-    background:linear-gradient(135deg,var(--accent-2) 0%,var(--accent) 100%);
+    background:linear-gradient(135deg,#0F2A5E 0%,#163C70 100%);
     -webkit-background-clip:text;background-clip:text;color:transparent;
   }
   .stat-label{font-size:12px;color:var(--ink-dim);margin-top:10px;text-transform:uppercase;letter-spacing:0.1em;font-weight:500}
@@ -145,7 +147,7 @@
     max-width:880px;margin-bottom:24px;letter-spacing:-0.03em;
   }
   h2.section-title .grad{
-    background:linear-gradient(135deg,var(--accent-2) 0%,var(--accent) 100%);
+    background:linear-gradient(135deg,#0F2A5E 0%,#163C70 100%);
     -webkit-background-clip:text;background-clip:text;color:transparent;
   }
   .section-sub{font-size:18px;color:var(--ink-mid);max-width:740px;margin-bottom:64px;line-height:1.6}
@@ -160,40 +162,42 @@
     padding:36px 30px;border:1px solid var(--line);border-radius:20px;
     background:var(--card);transition:all .3s;
     position:relative;overflow:hidden;
+    box-shadow:0 4px 16px rgba(10,21,48,0.04);
   }
   .card::before{
     content:"";position:absolute;top:0;left:0;right:0;height:1px;
     background:linear-gradient(90deg,transparent,var(--accent),transparent);
     opacity:0;transition:opacity .3s;
   }
-  .card:hover{border-color:rgba(15,53,87,0.35);transform:translateY(-4px);background:rgba(15,53,87,0.04)}
+  .card:hover{border-color:rgba(22,60,112,0.4);transform:translateY(-4px);box-shadow:0 16px 40px rgba(22,60,112,0.12)}
   .card:hover::before{opacity:1}
   .card-icon{
     width:48px;height:48px;border-radius:12px;
-    background:rgba(15,53,87,0.08);
-    color:var(--accent);
+    background:linear-gradient(135deg,rgba(22,60,112,0.18),rgba(40,86,168,0.08));
+    color:var(--accent-2);
     display:grid;place-items:center;margin-bottom:22px;font-size:22px;font-weight:600;
-    border:1px solid rgba(15,53,87,0.18);
+    border:1px solid rgba(22,60,112,0.25);
   }
-  .card h3{font-size:20px;font-weight:700;margin-bottom:12px;letter-spacing:-0.01em}
+  .card h3{font-size:20px;font-weight:700;margin-bottom:12px;letter-spacing:-0.01em;color:var(--ink)}
   .card p{color:var(--ink-mid);font-size:15px;line-height:1.65}
 
   /* THESIS TABLE */
   .thesis-table-wrap{
     border:1px solid var(--line);border-radius:20px;
     background:var(--card);overflow:hidden;margin-top:40px;
+    box-shadow:0 4px 16px rgba(10,21,48,0.04);
   }
   .thesis-table{width:100%;border-collapse:collapse}
   .thesis-table th,.thesis-table td{padding:22px 24px;text-align:left;font-size:15px}
   .thesis-table th{
-    background:rgba(15,53,87,0.07);color:var(--accent);
+    background:rgba(22,60,112,0.08);color:var(--accent-2);
     font-size:12px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;
     border-bottom:1px solid var(--line);
   }
   .thesis-table td{border-bottom:1px solid var(--line);color:var(--ink-mid)}
   .thesis-table tr:last-child td{border-bottom:none}
   .thesis-table td:first-child{font-weight:700;color:var(--ink);font-family:'Plus Jakarta Sans',sans-serif}
-  .thesis-table tr:hover td{background:rgba(15,53,87,0.04)}
+  .thesis-table tr:hover td{background:rgba(22,60,112,0.04)}
 
   /* CHECKLIST */
   .check-list{display:grid;grid-template-columns:1fr 1fr;gap:14px 32px;margin-top:24px}
@@ -202,7 +206,7 @@
   .check-list li::before{
     content:"";position:absolute;left:0;top:4px;
     width:18px;height:18px;border-radius:50%;
-    background:rgba(15,53,87,0.10);
+    background:rgba(22,60,112,0.12);
     border:1px solid var(--accent);
   }
   .check-list li::after{
@@ -217,14 +221,15 @@
   .split-visual{
     aspect-ratio:4/5;position:relative;display:grid;place-items:center;
     border:1px solid var(--line);border-radius:24px;
-    background:linear-gradient(135deg,rgba(15,53,87,0.06),rgba(31,82,128,0.02));
+    background:linear-gradient(135deg,rgba(22,60,112,0.06),rgba(40,86,168,0.02));
     overflow:hidden;
+    box-shadow:0 18px 50px rgba(10,21,48,0.10);
   }
-  .split-visual img{width:100%;height:100%;object-fit:cover;filter:saturate(0.9) brightness(0.85)}
+  .split-visual img{width:100%;height:100%;object-fit:cover;filter:saturate(0.95) brightness(0.95)}
   .split-visual::after{
     content:"";position:absolute;inset:0;pointer-events:none;
-    background:linear-gradient(180deg,transparent 50%,rgba(5,11,31,0.55) 100%),
-               linear-gradient(135deg,rgba(30,136,255,0.18),transparent 60%);
+    background:linear-gradient(180deg,transparent 60%,rgba(5,11,31,0.35) 100%),
+               linear-gradient(135deg,rgba(22,60,112,0.10),transparent 60%);
   }
 
   /* NUMBERED LIST */
@@ -235,7 +240,7 @@
   .num-list > div:last-child{border-bottom:none}
   .num-badge{
     flex-shrink:0;width:40px;height:40px;border-radius:10px;
-    background:linear-gradient(135deg,var(--accent-2),var(--accent));
+    background:linear-gradient(135deg,var(--accent),#0F2A5E);
     display:grid;place-items:center;font-weight:700;font-size:15px;color:#fff;
     font-family:'Plus Jakarta Sans',sans-serif;
   }
@@ -251,8 +256,9 @@
     display:flex;flex-direction:column;align-items:center;justify-content:center;
     background:#fff;transition:all .3s;cursor:pointer;padding:18px;text-align:center;
     position:relative;overflow:hidden;text-decoration:none;gap:6px;
+    box-shadow:0 4px 14px rgba(10,21,48,0.04);
   }
-  .pf-item:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(30,136,255,0.2)}
+  .pf-item:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(22,60,112,0.18)}
   .pf-img{max-width:78%;max-height:58%;object-fit:contain;display:block}
   .pf-logo{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:22px;letter-spacing:-0.02em;line-height:1.1}
   .pf-sector{font-size:11px;color:#64748B;margin-top:4px;letter-spacing:0.1em;text-transform:uppercase;font-weight:600}
@@ -274,7 +280,7 @@
   .pf-caspr .pf-logo{color:#1E3A8A}
   .pf-caspr .pf-logo span{color:#3B82F6}
   .pf-calo .pf-logo{color:#000}
-  .pf-calo .pf-logo span{color:#1E88FF}
+  .pf-calo .pf-logo span{color:#163C70}
   .pf-amai .pf-logo{color:#16A34A}
   .pf-amai .pf-logo span{color:#78350F}
   .pf-alkemy{background:#000}
@@ -284,73 +290,78 @@
   .pf-micro .pf-logo{color:#14B8A6}
   .pf-micro .pf-logo span{color:#FCA5A5}
   .pf-stamm .pf-logo{color:#14B8A6;letter-spacing:0.15em}
-  .pf-idiot .pf-logo{background:linear-gradient(90deg,#1E88FF,#EF4444,#F59E0B,#10B981);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .pf-idiot .pf-logo{background:linear-gradient(90deg,#163C70,#EF4444,#F59E0B,#10B981);-webkit-background-clip:text;background-clip:text;color:transparent}
   .pf-idiot .pf-logo span{color:#64748B;-webkit-text-fill-color:#64748B}
   .pf-keko .pf-logo{color:#16A34A}
   .pf-xtralit .pf-logo{color:#16A34A}
 
-  /* TEAM */
-  .team-list{display:flex;flex-direction:column;gap:20px}
-  .team-row{
-    display:grid;grid-template-columns:220px 1fr;gap:28px;
-    border:1px solid var(--line);border-radius:20px;overflow:hidden;
-    background:var(--card);transition:all .3s;padding:22px;align-items:center;
+  /* TEAM — simplificado: foto + nombre */
+  .team-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:24px;
+    margin-top:32px;
   }
-  .team-row:hover{border-color:rgba(15,53,87,0.35);background:rgba(15,53,87,0.04)}
+  @media(max-width:980px){.team-grid{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:720px){.team-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:440px){.team-grid{grid-template-columns:1fr}}
+  .team-card{
+    display:flex;flex-direction:column;align-items:center;gap:14px;
+    padding:24px 18px;border:1px solid var(--line);border-radius:18px;
+    background:var(--card);transition:all .3s;text-align:center;
+    box-shadow:0 4px 14px rgba(10,21,48,0.04);
+  }
+  .team-card:hover{border-color:rgba(22,60,112,0.4);transform:translateY(-3px);box-shadow:0 14px 36px rgba(22,60,112,0.12)}
   .team-photo{
-    display:block;aspect-ratio:1/1;width:220px;border-radius:14px;
-    background:linear-gradient(135deg,#1E3A8A 0%,#0A1530 100%);
-    display:grid;place-items:center;
-    font-family:'Plus Jakarta Sans',sans-serif;font-size:68px;color:var(--accent-2);font-weight:700;letter-spacing:-0.02em;
-    position:relative;overflow:hidden;text-decoration:none;transition:transform .3s;
+    display:block;width:140px;height:140px;border-radius:50%;
+    overflow:hidden;position:relative;
+    text-decoration:none;transition:transform .3s;
+    border:2px solid var(--line);
   }
-  .team-photo:hover{transform:scale(1.02)}
+  .team-photo:hover{transform:scale(1.04);border-color:var(--accent)}
   .team-photo img{width:100%;height:100%;object-fit:cover;display:block}
   .team-photo .li-badge{
-    position:absolute;bottom:10px;right:10px;
-    width:28px;height:28px;border-radius:6px;background:#0A66C2;
-    display:grid;place-items:center;color:#fff;font-size:14px;font-weight:700;
+    position:absolute;bottom:4px;right:4px;
+    width:30px;height:30px;border-radius:50%;background:#0A66C2;
+    display:grid;place-items:center;color:#fff;font-size:13px;font-weight:700;
     font-family:Arial,sans-serif;z-index:2;
+    border:2px solid #fff;
   }
-  .team-bio h4{font-size:22px;font-weight:800;letter-spacing:-0.01em;margin-bottom:2px;font-family:'Plus Jakarta Sans',sans-serif}
-  .team-bio .team-title{color:var(--accent);font-size:13px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;margin-bottom:10px}
-  .team-bio p{color:var(--ink-mid);font-size:15px;line-height:1.55}
-  @media(max-width:720px){
-    .team-row{grid-template-columns:1fr;text-align:center;padding:20px}
-    .team-photo{width:160px;margin:0 auto;font-size:48px}
-    .team-bio h4{font-size:20px}
+  .team-name{
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-size:17px;font-weight:700;letter-spacing:-0.01em;
+    color:var(--ink);line-height:1.2;
   }
 
   /* BD SECTION */
   .bd-banner{
     border:1px solid var(--line);border-radius:24px;
-    background:linear-gradient(135deg,rgba(15,53,87,0.06),rgba(31,82,128,0.02));
+    background:linear-gradient(135deg,rgba(22,60,112,0.08),rgba(40,86,168,0.02));
     padding:60px 50px;position:relative;overflow:hidden;
+    box-shadow:0 8px 30px rgba(10,21,48,0.06);
   }
   .bd-banner::before{
     content:"";position:absolute;top:0;right:0;bottom:0;width:42%;
-    background-image:linear-gradient(270deg,rgba(10,30,55,0.15) 0%,rgba(10,30,55,0.55) 55%,rgba(10,30,55,0.85) 100%),url('https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=1200&q=80');
+    background-image:linear-gradient(270deg,transparent 0%,rgba(244,246,251,0.5) 50%,rgba(244,246,251,0.95) 100%),url('https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=1200&q=80');
     background-size:cover;background-position:center;
-    pointer-events:none;opacity:1;
+    pointer-events:none;opacity:0.55;
   }
   @media(max-width:900px){.bd-banner::before{display:none}}
   .bd-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:center;position:relative;z-index:2}
   @media(max-width:900px){.bd-grid{grid-template-columns:1fr}}
   .bd-pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
-  .bd-pill{padding:8px 16px;border:1px solid var(--line);border-radius:999px;font-size:13px;color:var(--ink-mid);background:rgba(0,0,0,0.03)}
+  .bd-pill{padding:8px 16px;border:1px solid var(--line);border-radius:999px;font-size:13px;color:var(--ink-mid);background:var(--card)}
 
   /* CTA */
   .cta{text-align:center;padding:120px 24px;border-top:1px solid var(--line);position:relative}
   .cta::before{
     content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:400px;
-    background:radial-gradient(ellipse,rgba(15,53,87,0.12),transparent 60%);pointer-events:none;filter:blur(40px);
+    background:radial-gradient(ellipse,rgba(22,60,112,0.18),transparent 60%);pointer-events:none;filter:blur(40px);
   }
   .cta-inner{position:relative;z-index:2;max-width:800px;margin:0 auto}
   .cta h2{margin:0 auto 24px}
   .cta p{color:var(--ink-mid);font-size:18px;max-width:600px;margin:0 auto 40px}
 
   /* FOOTER */
-  footer{border-top:1px solid var(--line);padding:48px 0 32px;color:var(--ink-dim);font-size:14px}
+  footer{border-top:1px solid var(--line);padding:48px 0 32px;color:var(--ink-dim);font-size:14px;background:var(--bg-2)}
   .footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
   footer a{color:var(--ink-dim);text-decoration:none;margin-left:20px;transition:color .2s}
   footer a:hover{color:var(--ink)}
@@ -363,11 +374,12 @@
   .section-banner{
     position:relative;margin:0 0 48px;border-radius:20px;overflow:hidden;
     border:1px solid var(--line);aspect-ratio:3.4/1;
+    box-shadow:0 8px 30px rgba(10,21,48,0.10);
   }
-  .section-banner img{width:100%;height:100%;object-fit:cover;filter:saturate(0.95) brightness(0.7);display:block}
+  .section-banner img{width:100%;height:100%;object-fit:cover;filter:saturate(1) brightness(0.78);display:block}
   .section-banner::after{
     content:"";position:absolute;inset:0;pointer-events:none;
-    background:linear-gradient(180deg,transparent 30%,rgba(5,11,31,0.85) 100%),
+    background:linear-gradient(180deg,transparent 30%,rgba(5,11,31,0.80) 100%),
                linear-gradient(90deg,rgba(5,11,31,0.55) 0%,transparent 40%,transparent 60%,rgba(5,11,31,0.55) 100%);
   }
   .section-banner .bn-cap{
@@ -379,11 +391,11 @@
 
   /* NOTE banner (for placeholders) */
   .note{
-    background:rgba(180,130,30,0.08);border:1px solid rgba(180,130,30,0.3);
-    padding:14px 20px;border-radius:12px;color:#7A5410;font-size:13px;
+    background:rgba(245,158,11,0.10);border:1px solid rgba(245,158,11,0.35);
+    padding:14px 20px;border-radius:12px;color:#92400E;font-size:13px;
     margin-bottom:20px;
   }
-  .note b{color:#1A1A1A}
+  .note b{color:var(--ink)}
 </style>
 </head>
 <body>
@@ -481,7 +493,7 @@
         <p style="color:var(--ink-mid);font-size:17px;margin-bottom:16px">
           Nos apasionan las nuevas tecnologías y los cambios que generan en los verticales del mundo de los negocios. Disfrutamos coacheando equipos que intentan cambiar los paradigmas de los incumbentes.
         </p>
-        <blockquote style="border-left:3px solid var(--accent);padding:16px 24px;margin-top:28px;background:rgba(30,136,255,0.05);border-radius:0 12px 12px 0;font-size:18px;color:var(--ink);font-style:italic">
+        <blockquote style="border-left:3px solid var(--accent);padding:16px 24px;margin-top:28px;background:rgba(22,60,112,0.06);border-radius:0 12px 12px 0;font-size:18px;color:var(--ink);font-style:italic">
           "Nos interesa ayudar en la ejecución rápida para poder probar tecnologías y modelos de negocios."
         </blockquote>
       </div>
@@ -501,7 +513,7 @@
 
     <div class="section-banner reveal" style="aspect-ratio:2.6/1">
       <img src="https://images.unsplash.com/photo-1642790551116-18e150f248e3?w=1600&q=80" alt="Mercados financieros y capital" />
-      <div class="bn-cap" style="font-size:clamp(13px,3.2vw,40px);letter-spacing:0.04em;font-weight:800;font-family:'Plus Jakarta Sans',sans-serif;bottom:clamp(12px,3vw,32px);left:clamp(14px,3vw,28px);right:clamp(14px,3vw,28px);white-space:normal">US$ 20M+ invertidos · 13 compañías · 3 exits</div>
+      <div class="bn-cap" style="font-size:clamp(13px,3.2vw,40px);letter-spacing:0.04em;font-weight:800;font-family:'Plus Jakarta Sans',sans-serif;bottom:clamp(12px,3vw,32px);left:clamp(14px,3vw,28px);right:clamp(14px,3vw,28px);white-space:normal">US$ 20M+ invertidos · 17 compañías · 3 exits</div>
     </div>
 
     <div class="card-grid-3">
@@ -513,7 +525,7 @@
       <div class="card reveal">
         <div class="card-icon">↗</div>
         <h3>Expansión a LatAm</h3>
-        <p>En una segunda etapa comenzamos a explorar el ecosistema de LatAm. Hoy llevamos <b style="color:var(--ink)">13 inversiones realizadas (9 en LatAm y 4 en Israel)</b>. Todas las startups siguen activas y levantaron rondas posteriores a mayor valuación.</p>
+        <p>En una segunda etapa comenzamos a explorar el ecosistema de LatAm. Hoy llevamos <b style="color:var(--ink)">17 inversiones realizadas (13 en LatAm y 4 en Israel)</b>. Todas las startups siguen activas y levantaron rondas posteriores a mayor valuación.</p>
       </div>
       <div class="card reveal">
         <div class="card-icon">◉</div>
@@ -532,12 +544,12 @@
       <div class="section-label">Tesis de inversión</div>
       <h2 class="display section-title">Un modelo de inversión <span class="grad">con respaldo activo.</span></h2>
       <p class="section-sub">
-        El modelo tradicional de VC se sostiene sobre la búsqueda de un unicornio: capital repartido en muchas apuestas donde una sola compañía —con retornos de 100x— compensa a todas las que se caen por el camino. Nuestro enfoque es diferente. Portfolio acotado, tesis individual por compañía y <b style="color:var(--ink)">acompañamiento activo desde el directorio</b> — cada inversión tiene que sostenerse por sí sola y devolver un <b style="color:var(--ink)">mínimo de 5x</b>. El resultado después de 9 años de operación: 13 compañías en portfolio, todas en actividad, todas con rondas posteriores cerradas a valuaciones superiores a las de nuestra entrada.
+        El modelo tradicional de VC apuesta a un par de compañías con múltiplos muy altos —10x, 50x, 100x— que les permite absorber las muchas que quedan en el camino. Nuestro enfoque es distinto: portfolio acotado, tesis individual por compañía y <b style="color:var(--ink)">acompañamiento activo desde el directorio</b>. Cada inversión tiene que sostenerse por sí sola y devolver un <b style="color:var(--ink)">mínimo de 5x</b>, sin depender de una que salve la cartera.
       </p>
     </div>
 
     <div class="section-banner reveal" style="margin:20px 0 32px">
-      <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600&q=80" alt="Tesis de inversión" />
+      <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600&q=80" alt="Tesis de inversión: equipo trabajando estrategia" />
       <div class="bn-cap">Pre-seed · Seed · Serie A temprana</div>
     </div>
     <h3 class="display reveal" style="font-size:clamp(22px,2.4vw,30px);font-weight:700;letter-spacing:-0.01em;margin:20px 0 16px;color:var(--ink)">
@@ -642,7 +654,7 @@
       <h2 class="display section-title">Del board al <span class="grad">fundraising.</span></h2>
     </div>
     <div class="section-banner reveal" style="margin-top:32px">
-      <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1600&q=80" alt="Founder presentando ante directorio de inversores" />
+      <img src="https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=1600&q=80" alt="Founder presentando ante directorio de inversores" />
       <div class="bn-cap">Board · Estrategia · Fundraising</div>
     </div>
     <div class="card-grid-3" style="margin-top:40px">
@@ -687,16 +699,17 @@
     <div class="reveal">
       <div class="section-label">Portfolio</div>
       <h2 class="display section-title">Compañías <span class="grad">que respaldamos.</span></h2>
-      <p class="section-sub">13 inversiones activas en LatAm e Israel. Biotech, agrotech, deep tech, fintech, SaaS y energía.</p>
+      <p class="section-sub">17 inversiones activas en LatAm e Israel. Biotech, agrotech, deep tech, fintech, SaaS y energía.</p>
     </div>
 
     <div class="section-banner reveal">
-      <img src="https://images.unsplash.com/photo-1569025690938-a00729c9e1f9?w=1600&q=80" alt="Presencia global LatAm e Israel" />
-      <div class="bn-cap">9 en LatAm · 4 en Israel · 70+ co-inversores</div>
+      <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1600&q=80" alt="Presencia global LatAm e Israel" />
+      <div class="bn-cap">13 en LatAm · 4 en Israel · 70+ co-inversores</div>
     </div>
 
     <div class="portfolio-grid">
       <a href="https://fixupweb.com/region" target="_blank" rel="noopener" class="pf-item reveal">
+        <span class="pf-badge">Exit</span>
         <img class="pf-img" src="./LOGOS/Fixup.png" alt="FixUP">
         <div class="pf-sector">Post-venta tech · LatAm</div>
       </a>
@@ -752,6 +765,22 @@
         <img class="pf-img" src="./LOGOS/Lank.jpg" alt="Lank">
         <div class="pf-sector">Platform Sharing</div>
       </a>
+      <a href="#" target="_blank" rel="noopener" class="pf-item reveal" style="background:#fff">
+        <img class="pf-img" src="./LOGOS/logo%20uramerica.jpg" alt="Uramerica">
+        <div class="pf-sector">Minería de uranio</div>
+      </a>
+      <a href="#" target="_blank" rel="noopener" class="pf-item reveal" style="background:#fff">
+        <img class="pf-img" src="./LOGOS/logo%20kona.jpg" alt="Kona">
+        <div class="pf-sector">Energy as a Service</div>
+      </a>
+      <a href="#" target="_blank" rel="noopener" class="pf-item reveal" style="background:#fff">
+        <img class="pf-img" src="./LOGOS/logo%20alkemio.jpg" alt="Alkemio">
+        <div class="pf-sector">Separación de tierras raras</div>
+      </a>
+      <a href="#" target="_blank" rel="noopener" class="pf-item reveal" style="background:#fff">
+        <img class="pf-img" src="./LOGOS/logo%20akua.jpg" alt="Akua">
+        <div class="pf-sector">Fintech</div>
+      </a>
     </div>
   </div>
 </section>
@@ -763,23 +792,24 @@
       <div class="bd-grid">
         <div>
           <div class="section-label">Business Development</div>
-          <h2 class="display" style="font-size:clamp(28px,3.5vw,42px);line-height:1.1;font-weight:700;margin-bottom:20px;letter-spacing:-0.02em">
+          <h2 class="display" style="font-size:clamp(28px,3.5vw,42px);line-height:1.1;font-weight:700;margin-bottom:20px;letter-spacing:-0.02em;color:var(--ink)">
             Además de invertir, <span class="grad">ejecutamos en el terreno.</span>
           </h2>
           <p style="color:var(--ink-mid);font-size:16px;line-height:1.65;margin-bottom:8px">
             Nuestra relación con Israel arrancó representando compañías israelíes en la región. Hoy invertimos, pero la ejecución comercial en LatAm sigue siendo una de nuestras fortalezas. Para compañías israelíes de agrotech y deep tech, ofrecemos:
           </p>
-          <div class="bd-pills">
-            <span class="bd-pill">Commercial deployment</span>
-            <span class="bd-pill">Pilotos pagos</span>
-            <span class="bd-pill">Adaptación de pricing</span>
-            <span class="bd-pill">Alianzas regionales</span>
-            <span class="bd-pill">Co-inversión estratégica</span>
-          </div>
+          <ul class="bd-list" style="list-style:none;padding:0;margin:8px 0 0;display:flex;flex-direction:column;gap:10px">
+            <li style="display:flex;align-items:flex-start;gap:12px;color:var(--ink-mid);font-size:15px;line-height:1.5"><span style="flex:0 0 6px;height:6px;border-radius:50%;background:var(--accent);margin-top:9px"></span>Commercial deployment</li>
+            <li style="display:flex;align-items:flex-start;gap:12px;color:var(--ink-mid);font-size:15px;line-height:1.5"><span style="flex:0 0 6px;height:6px;border-radius:50%;background:var(--accent);margin-top:9px"></span>Pilotos pagos</li>
+            <li style="display:flex;align-items:flex-start;gap:12px;color:var(--ink-mid);font-size:15px;line-height:1.5"><span style="flex:0 0 6px;height:6px;border-radius:50%;background:var(--accent);margin-top:9px"></span>Adaptación de pricing</li>
+            <li style="display:flex;align-items:flex-start;gap:12px;color:var(--ink-mid);font-size:15px;line-height:1.5"><span style="flex:0 0 6px;height:6px;border-radius:50%;background:var(--accent);margin-top:9px"></span>Alianzas regionales</li>
+            <li style="display:flex;align-items:flex-start;gap:12px;color:var(--ink-mid);font-size:15px;line-height:1.5"><span style="flex:0 0 6px;height:6px;border-radius:50%;background:var(--accent);margin-top:9px"></span>Co-inversión estratégica</li>
+            <li style="display:flex;align-items:flex-start;gap:12px;color:var(--ink-mid);font-size:15px;line-height:1.5"><span style="flex:0 0 6px;height:6px;border-radius:50%;background:var(--accent);margin-top:9px"></span>Representación · Distribución · Resellers</li>
+          </ul>
         </div>
         <div style="text-align:center">
-          <div style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:64px;line-height:1;color:#fff;letter-spacing:-0.04em;text-shadow:0 2px 14px rgba(0,0,0,0.4)">3</div>
-          <div style="color:rgba(255,255,255,0.92);font-size:13px;letter-spacing:0.1em;text-transform:uppercase;margin-top:8px;text-shadow:0 1px 8px rgba(0,0,0,0.5)">compañías representadas actualmente</div>
+          <div style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:64px;line-height:1;color:var(--accent);letter-spacing:-0.04em">3</div>
+          <div style="color:var(--ink-dim);font-size:13px;letter-spacing:0.1em;text-transform:uppercase;margin-top:8px">compañías representadas actualmente</div>
         </div>
       </div>
     </div>
@@ -800,61 +830,55 @@
       <div class="bn-cap">7 partners · décadas de track record operativo en LatAm</div>
     </div>
 
-    <div class="team-list">
-      <div class="team-row reveal">
-        <a class="team-photo" href="https://www.linkedin.com/in/andres-perez-00b95b13/" target="_blank" rel="noopener" aria-label="LinkedIn de Andres Perez"><img src="./LOGOS/founder-andres%20perez.jpg" alt="Andres Perez"><span class="li-badge">in</span></a>
-        <div class="team-bio">
-          <h4>Andres Perez</h4>
-          <p>20+ años construyendo negocios en consumo masivo entre México y Argentina (brand, manufactura, retail, e-commerce). 8+ años en VC, con involucramiento en decenas de procesos de inversión, pilotos comerciales y alianzas estratégicas en foodtech, agtech, biotech, healthtech, fintech y transición energética. Ingeniero Químico, UBA.</p>
-        </div>
+    <div class="team-grid">
+      <div class="team-card reveal">
+        <a class="team-photo" href="https://www.linkedin.com/in/andres-perez-00b95b13/" target="_blank" rel="noopener" aria-label="LinkedIn de Andres Perez">
+          <img src="./LOGOS/founder-andres%20perez.jpg" alt="Andres Perez">
+          <span class="li-badge">in</span>
+        </a>
+        <div class="team-name">Andres Perez</div>
       </div>
-
-      <div class="team-row reveal">
-        <a class="team-photo" href="https://www.linkedin.com/in/miguel-angel-gra%C3%B1a-35bb1143/?locale=en" target="_blank" rel="noopener" aria-label="LinkedIn de Miguel Graña"><img src="./LOGOS/founder-miguel.jpg" alt="Miguel Graña"><span class="li-badge">in</span></a>
-        <div class="team-bio">
-          <h4>Miguel Graña</h4>
-          <p>20+ años en mercados emergentes. Ex CFO de Skyloom. Ex Managing Director de M&amp;A en JPMorgan, liderando transacciones internacionales. Involucrado en inversiones de energía renovable por 770 MW entre USA y Europa. Lidera inversiones en sectores donde la región tiene ventaja competitiva, combinando capital con soporte hands-on en estrategia, operaciones y escalamiento.</p>
-        </div>
+      <div class="team-card reveal">
+        <a class="team-photo" href="https://www.linkedin.com/in/miguel-angel-gra%C3%B1a-35bb1143/?locale=en" target="_blank" rel="noopener" aria-label="LinkedIn de Miguel Graña">
+          <img src="./LOGOS/founder-miguel.jpg" alt="Miguel Graña">
+          <span class="li-badge">in</span>
+        </a>
+        <div class="team-name">Miguel Graña</div>
       </div>
-
-      <div class="team-row reveal">
-        <a class="team-photo" href="https://www.linkedin.com/in/diego-teubal-612245/" target="_blank" rel="noopener" aria-label="LinkedIn de Diego Teubal"><img src="./LOGOS/founder-diego%20teubal.jpg" alt="Diego Teubal"><span class="li-badge">in</span></a>
-        <div class="team-bio">
-          <h4>Diego Teubal</h4>
-          <p>Ejecutivo y profesor con paso por compañías globales altamente innovadoras. Accionista y director de BGH. Fundador de Aconcagua Ventures. Foco en liderazgo de equipos, innovación tecnológica y generación de valor sostenible. Acompaña a founders y gobiernos en procesos de transformación en múltiples países.</p>
-        </div>
+      <div class="team-card reveal">
+        <a class="team-photo" href="https://www.linkedin.com/in/diego-teubal-612245/" target="_blank" rel="noopener" aria-label="LinkedIn de Diego Teubal">
+          <img src="./LOGOS/founder-diego%20teubal.jpg" alt="Diego Teubal">
+          <span class="li-badge">in</span>
+        </a>
+        <div class="team-name">Diego Teubal</div>
       </div>
-
-      <div class="team-row reveal">
-        <a class="team-photo" href="https://www.linkedin.com/in/martin-teubal-ba82b51/" target="_blank" rel="noopener" aria-label="LinkedIn de Martin Teubal"><img src="./LOGOS/founder-martin%20teubal.jpg.jpeg" alt="Martin Teubal"><span class="li-badge">in</span></a>
-        <div class="team-bio">
-          <h4>Martin Teubal</h4>
-          <p>Ingeniero industrial y ejecutivo con amplia experiencia en estrategia, operaciones y desarrollo internacional de negocios en Latinoamérica. Accionista y director de BGH y sus subsidiarias en Argentina, Chile y Brasil. Experiencia profunda en global sourcing y escalamiento de negocios. Fundador de Aconcagua Ventures.</p>
-        </div>
+      <div class="team-card reveal">
+        <a class="team-photo" href="https://www.linkedin.com/in/martin-teubal-ba82b51/" target="_blank" rel="noopener" aria-label="LinkedIn de Martin Teubal">
+          <img src="./LOGOS/founder-martin%20teubal.jpg.jpeg" alt="Martin Teubal">
+          <span class="li-badge">in</span>
+        </a>
+        <div class="team-name">Martin Teubal</div>
       </div>
-
-      <div class="team-row reveal">
-        <a class="team-photo" href="https://www.linkedin.com/in/diego-h-zbar-1555041/" target="_blank" rel="noopener" aria-label="LinkedIn de Diego Zbar"><img src="./LOGOS/founder-diego%20zbar.jpg" alt="Diego Zbar"><span class="li-badge">in</span></a>
-        <div class="team-bio">
-          <h4>Diego Zbar</h4>
-          <p>Ejecutivo internacional con presencia en Buenos Aires, Argentina, Israel y Suiza. Amplia trayectoria en business development, turnaround, investment banking, advisory, consulting y M&amp;A. Experiencia extensa en proyectos de Ag-Tech. Operación exitosa en mercados emergentes (Sur de Europa, Sudamérica, India) y presencia fuerte en Europa y USA.</p>
-        </div>
+      <div class="team-card reveal">
+        <a class="team-photo" href="https://www.linkedin.com/in/diego-h-zbar-1555041/" target="_blank" rel="noopener" aria-label="LinkedIn de Diego Zbar">
+          <img src="./LOGOS/founder-diego%20zbar.jpg" alt="Diego Zbar">
+          <span class="li-badge">in</span>
+        </a>
+        <div class="team-name">Diego Zbar</div>
       </div>
-
-      <div class="team-row reveal">
-        <a class="team-photo" href="https://www.linkedin.com/in/dario-fainguersch-9803a78/" target="_blank" rel="noopener" aria-label="LinkedIn de Dario Fainguersch"><img src="./LOGOS/founder-dario%20daingyersch.jpg" alt="Dario Fainguersch"><span class="li-badge">in</span></a>
-        <div class="team-bio">
-          <h4>Dario Fainguersch</h4>
-          <p>Co-founder con historia en renovables, medio ambiente, telecomunicaciones y tecnología. Skills fuertes en negociación, business planning, marketing y desarrollo de negocios. Ex CMO en compañías mobile de LatAm. Emprendedor e inversor ángel. Ingeniero UBA con programas ejecutivos en IAE Business School e IESE Business School.</p>
-        </div>
+      <div class="team-card reveal">
+        <a class="team-photo" href="https://www.linkedin.com/in/dario-fainguersch-9803a78/" target="_blank" rel="noopener" aria-label="LinkedIn de Dario Fainguersch">
+          <img src="./LOGOS/founder-dario%20daingyersch.jpg" alt="Dario Fainguersch">
+          <span class="li-badge">in</span>
+        </a>
+        <div class="team-name">Dario Fainguersch</div>
       </div>
-
-      <div class="team-row reveal">
-        <a class="team-photo" href="https://www.linkedin.com/in/daniel-aisenberg-3a50449/" target="_blank" rel="noopener" aria-label="LinkedIn de Daniel Aisenberg"><img src="./LOGOS/founder-daniel%20aisenberg.jpg" alt="Daniel Aisenberg"><span class="li-badge">in</span></a>
-        <div class="team-bio">
-          <h4>Daniel Aisenberg</h4>
-          <p>Emprendedor y ejecutivo con amplia experiencia en operaciones y business development, con foco en supply chain y la industria metalmecánica. Fundó, lideró y escaló compañías en LatAm, USA y Europa. Profunda expertise en autopartes y maquinaria industrial, combinando visión estratégica con ejecución operativa hands-on.</p>
-        </div>
+      <div class="team-card reveal">
+        <a class="team-photo" href="https://www.linkedin.com/in/daniel-aisenberg-3a50449/" target="_blank" rel="noopener" aria-label="LinkedIn de Daniel Aisenberg">
+          <img src="./LOGOS/founder-daniel%20aisenberg.jpg" alt="Daniel Aisenberg">
+          <span class="li-badge">in</span>
+        </a>
+        <div class="team-name">Daniel Aisenberg</div>
       </div>
     </div>
   </div>
@@ -910,3 +934,4 @@
   });
 </script>
 </body>
+</html>
