@@ -43,12 +43,12 @@
     background:rgba(255,255,255,0.85);
     border-bottom:1px solid var(--line);
   }
-  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:8px 24px;max-width:1240px;margin:0 auto}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:6px 24px;max-width:1240px;margin:0 auto}
   .logo{display:flex;align-items:center;gap:12px;font-weight:700;font-size:17px;letter-spacing:-0.01em;text-decoration:none;color:var(--ink)}
   .logo-img{
-    height:144px;width:auto;display:block;
+    height:115px;width:auto;display:block;
   }
-  @media(max-width:720px){.logo-img{height:90px}}
+  @media(max-width:720px){.logo-img{height:72px}}
   .nav-links{display:flex;gap:28px;align-items:center}
   .nav-links a{color:var(--ink-mid);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
   .nav-links a:hover{color:var(--ink)}
@@ -316,15 +316,18 @@
     text-decoration:none;transition:transform .3s;
     border:2px solid var(--line);
   }
-  .team-photo:hover{transform:scale(1.04);border-color:var(--accent)}
   .team-photo img{width:100%;height:100%;object-fit:cover;display:block}
-  .team-photo .li-badge{
-    position:absolute;bottom:4px;right:4px;
-    width:30px;height:30px;border-radius:50%;background:#0A66C2;
-    display:grid;place-items:center;color:#fff;font-size:13px;font-weight:700;
+  .team-card{position:relative}
+  .team-card .li-badge{
+    position:absolute;top:12px;right:12px;
+    width:32px;height:32px;border-radius:8px;background:#0A66C2;
+    display:grid;place-items:center;color:#fff;font-size:14px;font-weight:700;
     font-family:Arial,sans-serif;z-index:2;
-    border:2px solid #fff;
+    text-decoration:none;letter-spacing:-0.02em;
+    box-shadow:0 4px 12px rgba(10,21,48,0.18);
+    transition:transform .2s,background .2s;
   }
+  .team-card .li-badge:hover{transform:translateY(-1px);background:#084e96}
   .team-name{
     font-family:'Plus Jakarta Sans',sans-serif;
     font-size:17px;font-weight:700;letter-spacing:-0.01em;
@@ -752,7 +755,7 @@
         <div class="pf-sector">IoT · Retail</div>
       </a>
       <a href="https://kekoar.com/" target="_blank" rel="noopener" class="pf-item pf-keko reveal" style="background:#fff">
-        <img class="pf-img" src="./LOGOS/Keko.png" alt="Keko" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <img class="pf-img" src="./LOGOS/logo%20keko.JPG" alt="Keko" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
         <div class="pf-logo" style="color:#16A34A;display:none">KEKO</div>
         <div class="pf-sector">Mobility · Car sharing</div>
       </a>
@@ -765,19 +768,19 @@
         <img class="pf-img" src="./LOGOS/Lank.jpg" alt="Lank">
         <div class="pf-sector">Platform Sharing</div>
       </a>
-      <a href="#" target="_blank" rel="noopener" class="pf-item reveal" style="background:#fff">
+      <a href="https://www.uramerica.co.uk/" target="_blank" rel="noopener" class="pf-item reveal" style="background:#fff">
         <img class="pf-img" src="./LOGOS/logo%20uramerica.jpg" alt="Uramerica">
         <div class="pf-sector">Minería de uranio</div>
       </a>
-      <a href="#" target="_blank" rel="noopener" class="pf-item reveal" style="background:#fff">
+      <a href="https://kona.xyz/" target="_blank" rel="noopener" class="pf-item reveal" style="background:#fff">
         <img class="pf-img" src="./LOGOS/logo%20kona.jpg" alt="Kona">
         <div class="pf-sector">Energy as a Service</div>
       </a>
-      <a href="#" target="_blank" rel="noopener" class="pf-item reveal" style="background:#fff">
+      <a href="https://alkemio.tech/" target="_blank" rel="noopener" class="pf-item reveal" style="background:#fff">
         <img class="pf-img" src="./LOGOS/logo%20alkemio.jpg" alt="Alkemio">
         <div class="pf-sector">Separación de tierras raras</div>
       </a>
-      <a href="#" target="_blank" rel="noopener" class="pf-item reveal" style="background:#fff">
+      <a href="https://akua.la/es" target="_blank" rel="noopener" class="pf-item reveal" style="background:#fff">
         <img class="pf-img" src="./LOGOS/logo%20akua.jpg" alt="Akua">
         <div class="pf-sector">Fintech</div>
       </a>
@@ -832,52 +835,52 @@
 
     <div class="team-grid">
       <div class="team-card reveal">
-        <a class="team-photo" href="https://www.linkedin.com/in/andres-perez-00b95b13/" target="_blank" rel="noopener" aria-label="LinkedIn de Andres Perez">
-          <img src="./LOGOS/founder-andres%20perez.jpg" alt="Andres Perez">
-          <span class="li-badge">in</span>
-        </a>
+        <a class="li-badge" href="https://www.linkedin.com/in/andres-perez-00b95b13/" target="_blank" rel="noopener" aria-label="LinkedIn de Andres Perez" title="LinkedIn de Andres Perez">in</a>
+        <div class="team-photo">
+          <img src="./LOGOS/fotos%20founders%20v2/andres.jpg" alt="Andres Perez">
+        </div>
         <div class="team-name">Andres Perez</div>
       </div>
       <div class="team-card reveal">
-        <a class="team-photo" href="https://www.linkedin.com/in/miguel-angel-gra%C3%B1a-35bb1143/?locale=en" target="_blank" rel="noopener" aria-label="LinkedIn de Miguel Graña">
-          <img src="./LOGOS/founder-miguel.jpg" alt="Miguel Graña">
-          <span class="li-badge">in</span>
-        </a>
+        <a class="li-badge" href="https://www.linkedin.com/in/miguel-angel-gra%C3%B1a-35bb1143/?locale=en" target="_blank" rel="noopener" aria-label="LinkedIn de Miguel Graña" title="LinkedIn de Miguel Graña">in</a>
+        <div class="team-photo">
+          <img src="./LOGOS/fotos%20founders%20v2/miguel.jpg" alt="Miguel Graña">
+        </div>
         <div class="team-name">Miguel Graña</div>
       </div>
       <div class="team-card reveal">
-        <a class="team-photo" href="https://www.linkedin.com/in/diego-teubal-612245/" target="_blank" rel="noopener" aria-label="LinkedIn de Diego Teubal">
-          <img src="./LOGOS/founder-diego%20teubal.jpg" alt="Diego Teubal">
-          <span class="li-badge">in</span>
-        </a>
+        <a class="li-badge" href="https://www.linkedin.com/in/diego-teubal-612245/" target="_blank" rel="noopener" aria-label="LinkedIn de Diego Teubal" title="LinkedIn de Diego Teubal">in</a>
+        <div class="team-photo">
+          <img src="./LOGOS/fotos%20founders%20v2/diego-teubal.jpg" alt="Diego Teubal">
+        </div>
         <div class="team-name">Diego Teubal</div>
       </div>
       <div class="team-card reveal">
-        <a class="team-photo" href="https://www.linkedin.com/in/martin-teubal-ba82b51/" target="_blank" rel="noopener" aria-label="LinkedIn de Martin Teubal">
-          <img src="./LOGOS/founder-martin%20teubal.jpg.jpeg" alt="Martin Teubal">
-          <span class="li-badge">in</span>
-        </a>
+        <a class="li-badge" href="https://www.linkedin.com/in/martin-teubal-ba82b51/" target="_blank" rel="noopener" aria-label="LinkedIn de Martin Teubal" title="LinkedIn de Martin Teubal">in</a>
+        <div class="team-photo">
+          <img src="./LOGOS/fotos%20founders%20v2/martin.jpg" alt="Martin Teubal">
+        </div>
         <div class="team-name">Martin Teubal</div>
       </div>
       <div class="team-card reveal">
-        <a class="team-photo" href="https://www.linkedin.com/in/diego-h-zbar-1555041/" target="_blank" rel="noopener" aria-label="LinkedIn de Diego Zbar">
-          <img src="./LOGOS/founder-diego%20zbar.jpg" alt="Diego Zbar">
-          <span class="li-badge">in</span>
-        </a>
+        <a class="li-badge" href="https://www.linkedin.com/in/diego-h-zbar-1555041/" target="_blank" rel="noopener" aria-label="LinkedIn de Diego Zbar" title="LinkedIn de Diego Zbar">in</a>
+        <div class="team-photo">
+          <img src="./LOGOS/fotos%20founders%20v2/diego-zbar.jpg" alt="Diego Zbar">
+        </div>
         <div class="team-name">Diego Zbar</div>
       </div>
       <div class="team-card reveal">
-        <a class="team-photo" href="https://www.linkedin.com/in/dario-fainguersch-9803a78/" target="_blank" rel="noopener" aria-label="LinkedIn de Dario Fainguersch">
-          <img src="./LOGOS/founder-dario%20daingyersch.jpg" alt="Dario Fainguersch">
-          <span class="li-badge">in</span>
-        </a>
+        <a class="li-badge" href="https://www.linkedin.com/in/dario-fainguersch-9803a78/" target="_blank" rel="noopener" aria-label="LinkedIn de Dario Fainguersch" title="LinkedIn de Dario Fainguersch">in</a>
+        <div class="team-photo">
+          <img src="./LOGOS/fotos%20founders%20v2/dario.jpg" alt="Dario Fainguersch">
+        </div>
         <div class="team-name">Dario Fainguersch</div>
       </div>
       <div class="team-card reveal">
-        <a class="team-photo" href="https://www.linkedin.com/in/daniel-aisenberg-3a50449/" target="_blank" rel="noopener" aria-label="LinkedIn de Daniel Aisenberg">
-          <img src="./LOGOS/founder-daniel%20aisenberg.jpg" alt="Daniel Aisenberg">
-          <span class="li-badge">in</span>
-        </a>
+        <a class="li-badge" href="https://www.linkedin.com/in/daniel-aisenberg-3a50449/" target="_blank" rel="noopener" aria-label="LinkedIn de Daniel Aisenberg" title="LinkedIn de Daniel Aisenberg">in</a>
+        <div class="team-photo">
+          <img src="./LOGOS/fotos%20founders%20v2/daniel.jpg" alt="Daniel Aisenberg">
+        </div>
         <div class="team-name">Daniel Aisenberg</div>
       </div>
     </div>
