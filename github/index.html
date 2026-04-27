@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dragones Venture Partners — Early stage VC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FFFFFF;
+    --bg-2:#F4F6FB;
+    --bg-3:#EAEEF6;
+    --ink:#0A1530;
+    --ink-dim:#5C6679;
+    --ink-mid:#3A4660;
+    --accent:#163C70;
+    --accent-2:#0F2A5E;
+    --accent-glow:rgba(22,60,112,0.25);
+    --line:rgba(10,21,48,0.10);
+    --card:#FFFFFF;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',system-ui,sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.6;
+    overflow-x:hidden;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -10%,rgba(22,60,112,0.10),transparent 50%),
+      radial-gradient(ellipse 60% 40% at 100% 20%,rgba(22,60,112,0.06),transparent 60%);
+  }
+  .display{font-family:'Plus Jakarta Sans',sans-serif;letter-spacing:-0.025em}
+  .container{max-width:1240px;margin:0 auto;padding:0 24px}
+
+  /* NAV */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    backdrop-filter:blur(16px);
+    background:rgba(255,255,255,0.85);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:6px 24px;max-width:1240px;margin:0 auto}
+  .logo{display:flex;align-items:center;gap:12px;font-weight:700;font-size:17px;letter-spacing:-0.01em;text-decoration:none;color:var(--ink)}
+  .logo-img{
+    height:115px;width:auto;display:block;
+  }
+  @media(max-width:720px){.logo-img{height:72px}}
+  .nav-links{display:flex;gap:28px;align-items:center}
+  .nav-links a{color:var(--ink-mid);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
+  .nav-links a:hover{color:var(--ink)}
+  .nav-cta{background:var(--accent);color:#fff!important;padding:9px 18px;border-radius:999px;font-weight:600}
+  .nav-cta:hover{background:#0F2A5E}
+  @media(max-width:880px){.nav-links > a:not(.nav-cta){display:none}.nav-links{gap:8px}.lang-switcher{margin-left:6px;padding-left:8px;gap:4px}.lang-btn{padding:3px 5px}.lang-btn .flag{width:20px;height:14px}.lang-btn .flag-label{font-size:9px}.nav-cta{padding:7px 14px;font-size:13px}}
+
+  /* HERO */
+  .hero{min-height:92vh;display:flex;align-items:center;padding:200px 0 80px;position:relative}
+  .hero-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:60px;align-items:center;position:relative;z-index:2}
+  @media(max-width:960px){.hero-grid{grid-template-columns:1fr;gap:40px}}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:10px;
+    font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent-2);
+    margin-bottom:28px;font-weight:600;
+    padding:8px 14px;border:1px solid rgba(22,60,112,0.30);
+    border-radius:999px;background:rgba(22,60,112,0.06);
+  }
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 2s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+  h1.hero-title{
+    font-size:clamp(32px,4.5vw,58px);line-height:1.08;font-weight:700;
+    margin-bottom:28px;letter-spacing:-0.03em;
+  }
+  h1.hero-title .grad{
+    background:linear-gradient(135deg,#0F2A5E 0%,#163C70 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .hero-sub{font-size:18px;color:var(--ink-mid);max-width:620px;margin-bottom:40px;line-height:1.65}
+  .cta-row{display:flex;gap:14px;flex-wrap:wrap}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:14px 26px;border-radius:999px;
+    font-weight:600;font-size:15px;text-decoration:none;
+    transition:transform .2s,background .2s,box-shadow .2s;cursor:pointer;border:none;
+  }
+  .btn-primary{background:var(--accent);color:#fff;box-shadow:0 8px 30px var(--accent-glow)}
+  .btn-primary:hover{transform:translateY(-2px);background:#0F2A5E}
+  .btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+  .btn-ghost:hover{border-color:var(--ink-mid);background:rgba(10,21,48,0.03)}
+
+  /* Hero visual */
+  .hero-visual{
+    position:relative;aspect-ratio:4/5;
+    display:grid;place-items:center;
+    border-radius:24px;overflow:hidden;
+    border:1px solid var(--line);
+    box-shadow:0 18px 50px rgba(10,21,48,0.10);
+  }
+  .hero-visual::before{
+    content:"";position:absolute;inset:0;z-index:3;pointer-events:none;
+    background:linear-gradient(180deg,transparent 50%,rgba(5,11,31,0.55) 100%),
+               linear-gradient(135deg,rgba(22,60,112,0.10),transparent 50%);
+  }
+  .hero-img{
+    width:100%;height:100%;object-fit:cover;
+    filter:saturate(1.1) brightness(0.92);
+    animation:slow-zoom 14s ease-in-out infinite alternate;
+  }
+  @keyframes slow-zoom{from{transform:scale(1)}to{transform:scale(1.06)}}
+  .hero-caption{
+    position:absolute;bottom:24px;left:24px;right:24px;z-index:4;
+    color:#fff;font-size:13px;letter-spacing:0.1em;text-transform:uppercase;
+    font-weight:600;opacity:0.95;
+  }
+
+  /* STATS strip */
+  .stats{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:8px;
+    border:1px solid var(--line);border-radius:20px;
+    background:var(--card);backdrop-filter:blur(10px);
+    padding:8px;
+    box-shadow:0 4px 20px rgba(10,21,48,0.04);
+  }
+  .stats > div{
+    padding:32px 20px;text-align:center;
+    border-radius:14px;transition:background .2s;
+  }
+  .stats > div:hover{background:rgba(22,60,112,0.06)}
+  @media(max-width:900px){.stats{grid-template-columns:repeat(2,1fr)}}
+  .stat-num{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(32px,3.5vw,44px);font-weight:800;color:var(--ink);letter-spacing:-0.03em;line-height:1}
+  .stat-num .grad{
+    background:linear-gradient(135deg,#0F2A5E 0%,#163C70 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .stat-label{font-size:12px;color:var(--ink-dim);margin-top:10px;text-transform:uppercase;letter-spacing:0.1em;font-weight:500}
+
+  /* SECTIONS */
+  section{padding:120px 0;position:relative}
+  .section-label{
+    font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent-2);
+    font-weight:600;margin-bottom:20px;display:inline-block;
+  }
+  h2.section-title{
+    font-size:clamp(34px,4.5vw,58px);line-height:1.08;font-weight:700;
+    max-width:880px;margin-bottom:24px;letter-spacing:-0.03em;
+  }
+  h2.section-title .grad{
+    background:linear-gradient(135deg,#0F2A5E 0%,#163C70 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .section-sub{font-size:18px;color:var(--ink-mid);max-width:740px;margin-bottom:64px;line-height:1.6}
+
+  /* CARDS */
+  .card-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .card-grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  .card-grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  @media(max-width:960px){.card-grid-3,.card-grid-2{grid-template-columns:1fr}}
+  @media(max-width:780px){.card-grid-4{grid-template-columns:repeat(2,1fr)}}
+  .card{
+    padding:36px 30px;border:1px solid var(--line);border-radius:20px;
+    background:var(--card);transition:all .3s;
+    position:relative;overflow:hidden;
+    box-shadow:0 4px 16px rgba(10,21,48,0.04);
+  }
+  .card::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:1px;
+    background:linear-gradient(90deg,transparent,var(--accent),transparent);
+    opacity:0;transition:opacity .3s;
+  }
+  .card:hover{border-color:rgba(22,60,112,0.4);transform:translateY(-4px);box-shadow:0 16px 40px rgba(22,60,112,0.12)}
+  .card:hover::before{opacity:1}
+  .card-icon{
+    width:48px;height:48px;border-radius:12px;
+    background:linear-gradient(135deg,rgba(22,60,112,0.18),rgba(40,86,168,0.08));
+    color:var(--accent-2);
+    display:grid;place-items:center;margin-bottom:22px;font-size:22px;font-weight:600;
+    border:1px solid rgba(22,60,112,0.25);
+  }
+  .card h3{font-size:20px;font-weight:700;margin-bottom:12px;letter-spacing:-0.01em;color:var(--ink)}
+  .card p{color:var(--ink-mid);font-size:15px;line-height:1.65}
+
+  /* THESIS TABLE */
+  .thesis-table-wrap{
+    border:1px solid var(--line);border-radius:20px;
+    background:var(--card);overflow:hidden;margin-top:40px;
+    box-shadow:0 4px 16px rgba(10,21,48,0.04);
+  }
+  .thesis-table{width:100%;border-collapse:collapse}
+  .thesis-table th,.thesis-table td{padding:22px 24px;text-align:left;font-size:15px}
+  .thesis-table th{
+    background:rgba(22,60,112,0.08);color:var(--accent-2);
+    font-size:12px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;
+    border-bottom:1px solid var(--line);
+  }
+  .thesis-table td{border-bottom:1px solid var(--line);color:var(--ink-mid)}
+  .thesis-table tr:last-child td{border-bottom:none}
+  .thesis-table td:first-child{font-weight:700;color:var(--ink);font-family:'Plus Jakarta Sans',sans-serif}
+  .thesis-table tr:hover td{background:rgba(22,60,112,0.04)}
+
+  /* CHECKLIST */
+  .check-list{display:grid;grid-template-columns:1fr 1fr;gap:14px 32px;margin-top:24px}
+  @media(max-width:760px){.check-list{grid-template-columns:1fr}}
+  .check-list li{list-style:none;padding-left:32px;position:relative;color:var(--ink-mid);font-size:15px;line-height:1.55}
+  .check-list li::before{
+    content:"";position:absolute;left:0;top:4px;
+    width:18px;height:18px;border-radius:50%;
+    background:rgba(22,60,112,0.12);
+    border:1px solid var(--accent);
+  }
+  .check-list li::after{
+    content:"";position:absolute;left:5px;top:8px;
+    width:8px;height:4px;border-left:2px solid var(--accent-2);border-bottom:2px solid var(--accent-2);
+    transform:rotate(-45deg);
+  }
+
+  /* SPLIT */
+  .split{display:grid;grid-template-columns:1.15fr 1fr;gap:80px;align-items:center}
+  @media(max-width:960px){.split{grid-template-columns:1fr;gap:40px}}
+  .split-visual{
+    aspect-ratio:4/5;position:relative;display:grid;place-items:center;
+    border:1px solid var(--line);border-radius:24px;
+    background:linear-gradient(135deg,rgba(22,60,112,0.06),rgba(40,86,168,0.02));
+    overflow:hidden;
+    box-shadow:0 18px 50px rgba(10,21,48,0.10);
+  }
+  .split-visual img{width:100%;height:100%;object-fit:cover;filter:saturate(0.95) brightness(0.95)}
+  .split-visual::after{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:linear-gradient(180deg,transparent 60%,rgba(5,11,31,0.35) 100%),
+               linear-gradient(135deg,rgba(22,60,112,0.10),transparent 60%);
+  }
+
+  /* NUMBERED LIST */
+  .num-list{margin-top:32px}
+  .num-list > div{
+    display:flex;gap:20px;padding:22px 0;border-bottom:1px solid var(--line);
+  }
+  .num-list > div:last-child{border-bottom:none}
+  .num-badge{
+    flex-shrink:0;width:40px;height:40px;border-radius:10px;
+    background:linear-gradient(135deg,var(--accent),#0F2A5E);
+    display:grid;place-items:center;font-weight:700;font-size:15px;color:#fff;
+    font-family:'Plus Jakarta Sans',sans-serif;
+  }
+  .num-list strong{display:block;font-weight:700;font-size:17px;margin-bottom:4px;color:var(--ink)}
+  .num-list p{color:var(--ink-mid);font-size:15px}
+
+  /* PORTFOLIO */
+  .section-dark{background:var(--bg-2)}
+  .portfolio-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  @media(max-width:900px){.portfolio-grid{grid-template-columns:repeat(2,1fr)}}
+  .pf-item{
+    aspect-ratio:1.5/1;border:1px solid var(--line);border-radius:16px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    background:#fff;transition:all .3s;cursor:pointer;padding:18px;text-align:center;
+    position:relative;overflow:hidden;text-decoration:none;gap:6px;
+    box-shadow:0 4px 14px rgba(10,21,48,0.04);
+  }
+  .pf-item:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(22,60,112,0.18)}
+  .pf-img{max-width:78%;max-height:58%;object-fit:contain;display:block}
+  .pf-logo{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:22px;letter-spacing:-0.02em;line-height:1.1}
+  .pf-sector{font-size:11px;color:#64748B;margin-top:4px;letter-spacing:0.1em;text-transform:uppercase;font-weight:600}
+  .pf-badge{
+    position:absolute;top:10px;right:10px;
+    font-size:10px;font-weight:700;letter-spacing:0.08em;
+    padding:3px 8px;border-radius:4px;
+    background:#16a34a;color:#fff;
+  }
+  .pf-badge.soon{background:#f59e0b}
+  /* Brand colors per company */
+  .pf-fixup{background:#000;color:#fff}
+  .pf-fixup .pf-logo{color:#EF4444}
+  .pf-fixup .pf-logo span{color:#fff}
+  .pf-fixup .pf-sector{color:#94A3B8}
+  .pf-armenta .pf-logo{color:#475569}
+  .pf-armenta .pf-logo span{color:#22D3EE}
+  .pf-skyloom .pf-logo{color:#64748B}
+  .pf-caspr .pf-logo{color:#1E3A8A}
+  .pf-caspr .pf-logo span{color:#3B82F6}
+  .pf-calo .pf-logo{color:#000}
+  .pf-calo .pf-logo span{color:#163C70}
+  .pf-amai .pf-logo{color:#16A34A}
+  .pf-amai .pf-logo span{color:#78350F}
+  .pf-alkemy{background:#000}
+  .pf-alkemy .pf-logo{color:#3B82F6}
+  .pf-alkemy .pf-logo span{color:#E5E7EB}
+  .pf-alkemy .pf-sector{color:#94A3B8}
+  .pf-micro .pf-logo{color:#14B8A6}
+  .pf-micro .pf-logo span{color:#FCA5A5}
+  .pf-stamm .pf-logo{color:#14B8A6;letter-spacing:0.15em}
+  .pf-idiot .pf-logo{background:linear-gradient(90deg,#163C70,#EF4444,#F59E0B,#10B981);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .pf-idiot .pf-logo span{color:#64748B;-webkit-text-fill-color:#64748B}
+  .pf-keko .pf-logo{color:#16A34A}
+  .pf-xtralit .pf-logo{color:#16A34A}
+
+  /* TEAM — simplificado: foto + nombre */
+  .team-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:24px;
+    margin-top:32px;
+  }
+  @media(max-width:980px){.team-grid{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:720px){.team-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:440px){.team-grid{grid-template-columns:1fr}}
+  .team-card{
+    display:flex;flex-direction:column;align-items:center;gap:14px;
+    padding:24px 18px;border:1px solid var(--line);border-radius:18px;
+    background:var(--card);transition:all .3s;text-align:center;
+    box-shadow:0 4px 14px rgba(10,21,48,0.04);
+  }
+  .team-card:hover{border-color:rgba(22,60,112,0.4);transform:translateY(-3px);box-shadow:0 14px 36px rgba(22,60,112,0.12)}
+  .team-photo{
+    display:block;width:140px;height:215px;border-radius:14px;
+    overflow:hidden;position:relative;
+    text-decoration:none;transition:transform .3s;
+    border:1px solid var(--line);
+    background:#ffffff;
+  }
+  .team-photo img{width:100%;height:100%;object-fit:cover;display:block}
+  .team-card{position:relative}
+  .team-card .li-badge{
+    position:absolute;top:12px;right:12px;
+    width:32px;height:32px;border-radius:8px;background:#0A66C2;
+    display:grid;place-items:center;color:#fff;font-size:14px;font-weight:700;
+    font-family:Arial,sans-serif;z-index:2;
+    text-decoration:none;letter-spacing:-0.02em;
+    box-shadow:0 4px 12px rgba(10,21,48,0.18);
+    transition:transform .2s,background .2s;
+  }
+  .team-card .li-badge:hover{transform:translateY(-1px);background:#084e96}
+  .team-name{
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-size:17px;font-weight:700;letter-spacing:-0.01em;
+    color:var(--ink);line-height:1.2;
+  }
+
+  /* BD SECTION */
+  .bd-banner{
+    border:1px solid var(--line);border-radius:24px;
+    background:linear-gradient(135deg,rgba(22,60,112,0.08),rgba(40,86,168,0.02));
+    padding:60px 50px;position:relative;overflow:hidden;
+    box-shadow:0 8px 30px rgba(10,21,48,0.06);
+  }
+  .bd-banner::before{
+    content:"";position:absolute;top:0;right:0;bottom:0;width:42%;
+    background-image:linear-gradient(270deg,transparent 0%,rgba(244,246,251,0.5) 50%,rgba(244,246,251,0.95) 100%),url('https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=1200&q=80');
+    background-size:cover;background-position:center;
+    pointer-events:none;opacity:0.55;
+  }
+  @media(max-width:900px){.bd-banner::before{display:none}}
+  .bd-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:center;position:relative;z-index:2}
+  @media(max-width:900px){.bd-grid{grid-template-columns:1fr}}
+  .bd-pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+  .bd-pill{padding:8px 16px;border:1px solid var(--line);border-radius:999px;font-size:13px;color:var(--ink-mid);background:var(--card)}
+
+  /* CTA */
+  .cta{text-align:center;padding:120px 24px;border-top:1px solid var(--line);position:relative}
+  .cta::before{
+    content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:400px;
+    background:radial-gradient(ellipse,rgba(22,60,112,0.18),transparent 60%);pointer-events:none;filter:blur(40px);
+  }
+  .cta-inner{position:relative;z-index:2;max-width:800px;margin:0 auto}
+  .cta h2{margin:0 auto 24px}
+  .cta p{color:var(--ink-mid);font-size:18px;max-width:600px;margin:0 auto 40px}
+
+  /* FOOTER */
+  footer{border-top:1px solid var(--line);padding:48px 0 32px;color:var(--ink-dim);font-size:14px;background:var(--bg-2)}
+  .footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
+  footer a{color:var(--ink-dim);text-decoration:none;margin-left:20px;transition:color .2s}
+  footer a:hover{color:var(--ink)}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* SECTION BANNER IMG (ambient photography) */
+  .section-banner{
+    position:relative;margin:0 0 48px;border-radius:20px;overflow:hidden;
+    border:1px solid var(--line);aspect-ratio:3.4/1;
+    box-shadow:0 8px 30px rgba(10,21,48,0.10);
+  }
+  .section-banner img{width:100%;height:100%;object-fit:cover;filter:saturate(1) brightness(0.78);display:block}
+  .section-banner::after{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:linear-gradient(180deg,transparent 30%,rgba(5,11,31,0.80) 100%),
+               linear-gradient(90deg,rgba(5,11,31,0.55) 0%,transparent 40%,transparent 60%,rgba(5,11,31,0.55) 100%);
+  }
+  .section-banner .bn-cap{
+    position:absolute;left:28px;bottom:22px;right:28px;color:#fff;z-index:2;
+    font-size:13px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;
+    text-shadow:0 2px 10px rgba(0,0,0,0.4);
+  }
+  @media(max-width:760px){.section-banner{aspect-ratio:2/1}}
+
+  /* NOTE banner (for placeholders) */
+  .note{
+    background:rgba(245,158,11,0.10);border:1px solid rgba(245,158,11,0.35);
+    padding:14px 20px;border-radius:12px;color:#92400E;font-size:13px;
+    margin-bottom:20px;
+  }
+  .note b{color:var(--ink)}
+
+  /* === Bilingual switcher === */
+  .lang-es,.lang-en{display:inline}
+  body.lang-en .lang-es{display:none !important}
+  body.lang-es .lang-en{display:none !important}
+  .lang-switcher{display:inline-flex;gap:6px;align-items:center;margin-left:14px;padding-left:14px;border-left:1px solid var(--line)}
+  .lang-btn{display:inline-flex;flex-direction:column;align-items:center;gap:2px;padding:4px 6px;border:1px solid transparent;border-radius:6px;background:transparent;cursor:pointer;text-decoration:none;transition:background .15s ease,border-color .15s ease}
+  .lang-btn:hover{background:rgba(22,60,112,0.06)}
+  .lang-btn.active{border-color:var(--accent);background:rgba(22,60,112,0.08)}
+  .lang-btn .flag{width:24px;height:16px;border-radius:2px;display:block;border:1px solid var(--line);overflow:hidden}
+  .lang-btn .flag svg{width:100%;height:100%;display:block}
+  .lang-btn .flag-label{font-size:10px;font-weight:700;color:var(--ink-mid);letter-spacing:0.08em;line-height:1}
+  .lang-btn.active .flag-label{color:var(--accent)}
+</style>
+</head>
+<body>
+
+<!-- Dragon SVG (stylized silhouette — approximación del logo real) -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="dragon" viewBox="0 0 200 200">
+      <g fill="currentColor">
+        <!-- Arco/melena envolvente -->
+        <path d="M100 18 C58 18 22 52 22 94 c0 8 1 16 4 23 l10 -6 C33 103 32 98 32 94 c0 -39 31 -70 70 -70 8 0 15 1 22 3 l-6 -5 C110 19 105 18 100 18 z"/>
+        <path d="M178 94 c0 39 -31 70 -70 70 -9 0 -17 -1 -25 -4 l7 6 c6 2 13 3 20 3 42 0 78 -34 78 -78 0 -6 -1 -13 -3 -19 l-10 6 c2 5 3 10 3 16 z"/>
+        <!-- Cabeza del dragón (silueta principal) -->
+        <path d="M140 60
+          C 132 50, 118 44, 102 46
+          C 88 46, 75 52, 66 62
+          C 58 70, 55 80, 58 90
+          L 70 82
+          C 72 84, 76 86, 80 86
+          L 82 92
+          C 78 96, 75 102, 76 108
+          L 88 106
+          C 92 110, 98 114, 106 115
+          L 112 118
+          C 120 119, 128 118, 135 115
+          L 138 110
+          C 145 107, 150 102, 153 95
+          C 156 88, 155 80, 150 74
+          L 143 80
+          C 142 74, 141 68, 140 60 Z"/>
+        <!-- Cuernos/espinas hacia atrás -->
+        <path d="M 62 62 L 48 46 L 66 58 Z"/>
+        <path d="M 72 54 L 58 34 L 78 50 Z"/>
+        <path d="M 88 50 L 80 28 L 94 46 Z"/>
+        <!-- Ojo (contraste) -->
+        <circle cx="120" cy="78" r="2.5" fill="#fff"/>
+        <!-- Colmillos -->
+        <path d="M 130 104 L 132 112 L 134 104 Z" fill="#fff"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo" aria-label="Dragones Venture Partners">
+      <img class="logo-img" src="./LOGOS/isologo-black.png" alt="Dragones Venture Partners" />
+    </a>
+    <div class="nav-links">
+      <a href="#tesis">Thesis</a>
+      <a href="#track">Track record</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#equipo">Team</a>
+      <a href="#contacto" class="nav-cta">Contact</a>
+      <div class="lang-switcher" role="group" aria-label="Language switcher">
+        <a href="#" class="lang-btn active" aria-current="page" aria-label="English">
+          <span class="flag" aria-hidden="true">
+            <svg viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg">
+              <clipPath id="uk-c"><path d="M0,0 v30 h60 v-30 z"/></clipPath>
+              <clipPath id="uk-t"><path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/></clipPath>
+              <g clip-path="url(#uk-c)">
+                <path d="M0,0 v30 h60 v-30 z" fill="#012169"/>
+                <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/>
+                <path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#uk-t)" stroke="#C8102E" stroke-width="4"/>
+                <path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/>
+                <path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/>
+              </g>
+            </svg>
+          </span>
+          <span class="flag-label">EN</span>
+        </a>
+        <a href="es.html" class="lang-btn" aria-label="Español">
+          <span class="flag" aria-hidden="true">
+            <svg viewBox="0 0 6 4" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+              <rect width="6" height="4" fill="#AA151B"/>
+              <rect width="6" height="2" y="1" fill="#F1BF00"/>
+            </svg>
+          </span>
+          <span class="flag-label">ES</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container hero-grid">
+    <div class="reveal">
+      <div class="eyebrow"><span class="dot"></span> Early stage VC · LatAm + Israel</div>
+      <h1 class="display hero-title">
+        Smart capital<br>for <span class="grad">founders who execute.</span>
+      </h1>
+      <p class="hero-sub">
+        We invest in pre-seed, seed and early Series A startups originating in Latin America and Israel. We support founders with our network, operating expertise and strategic co-investors from day one.
+      </p>
+      <div class="cta-row">
+        <a href="#contacto" class="btn btn-primary">Pitch your startup →</a>
+        <a href="#portfolio" class="btn btn-ghost">See portfolio</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <img class="hero-img" alt="Puente de la Mujer, Puerto Madero (Calatrava)" src="./LOGOS/calatrava.jpg" />
+      <div class="hero-caption">Buenos Aires · Tel Aviv · LatAm</div>
+    </div>
+  </div>
+</header>
+
+
+<!-- QUIENES SOMOS -->
+<section id="quienes">
+  <div class="container">
+    <div class="split">
+      <div class="reveal">
+        <div class="section-label">Who we are</div>
+        <h2 class="display section-title">
+          A team of <span class="grad">investors</span> with operating careers across LatAm.
+        </h2>
+        <p style="color:var(--ink-mid);font-size:17px;margin-bottom:16px">
+          We're a group of professionals who, after long corporate careers building businesses across Argentina and LatAm, put our expertise and network to work for the startup ecosystem.
+        </p>
+        <p style="color:var(--ink-mid);font-size:17px;margin-bottom:16px">
+          We're passionate about new technologies and the disruption they bring to business verticals. We enjoy coaching teams that aim to break the incumbents' paradigms.
+        </p>
+        <blockquote style="border-left:3px solid var(--accent);padding:16px 24px;margin-top:28px;background:rgba(22,60,112,0.06);border-radius:0 12px 12px 0;font-size:18px;color:var(--ink);font-style:italic">
+          "We help founders execute fast so they can validate technologies and business models."
+        </blockquote>
+      </div>
+      <div class="split-visual reveal">
+        <img alt="Founders and partners in strategic discussion" src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=1200&q=80" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRACK RECORD -->
+<section id="track" class="section-dark">
+  <div class="container">
+    <div class="reveal" style="text-align:center;margin-bottom:40px">
+      <h2 class="display section-title" style="margin:0 auto">Track record in <span class="grad">Venture Capital.</span></h2>
+    </div>
+
+    <div class="section-banner reveal" style="aspect-ratio:2.6/1">
+      <img src="https://images.unsplash.com/photo-1642790551116-18e150f248e3?w=1600&q=80" alt="Financial markets and capital" />
+      <div class="bn-cap" style="font-size:clamp(13px,3.2vw,40px);letter-spacing:0.04em;font-weight:800;font-family:'Plus Jakarta Sans',sans-serif;bottom:clamp(12px,3vw,32px);left:clamp(14px,3vw,28px);right:clamp(14px,3vw,28px);white-space:normal">US$ 20M+ invested · 17 companies · 3 exits</div>
+    </div>
+
+    <div class="card-grid-3">
+      <div class="card reveal">
+        <div class="card-icon">◆</div>
+        <h3>Born connected to Israel</h3>
+        <p>Nine years ago we started representing Israeli companies in the region, helping them validate technologies, business models and generate revenues. That gave us a unique edge when investing: knowing the founders from the inside.</p>
+      </div>
+      <div class="card reveal">
+        <div class="card-icon">↗</div>
+        <h3>Expansion into LatAm</h3>
+        <p>In a second stage we started exploring the LatAm ecosystem. Today we have <b style="color:var(--ink)">17 investments completed (13 in LatAm and 4 in Israel)</b>. All startups remain active and have raised follow-on rounds at higher valuations.</p>
+      </div>
+      <div class="card reveal">
+        <div class="card-icon">◉</div>
+        <h3>Co-investor network</h3>
+        <p>More than <b style="color:var(--ink)">70 co-investors</b> from Argentina, Spain, the US, Israel and Panama back us. This lets us write larger tickets, secure better rights, and run sharper diligence in verticals where they have expertise.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- TESIS -->
+<section id="tesis">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Investment thesis</div>
+      <h2 class="display section-title">An investment model <span class="grad">with active support.</span></h2>
+      <p class="section-sub">
+        The traditional VC model bets on a couple of companies with very high multiples — 10x, 50x, 100x — that absorb the many that fall along the way. Our approach is different: a focused portfolio, individual thesis per company and <b style="color:var(--ink)">active support from the board</b>. Each investment has to stand on its own and return a <b style="color:var(--ink)">minimum of 5x</b>, without depending on one winner to carry the portfolio.
+      </p>
+    </div>
+
+    <div class="section-banner reveal" style="margin:20px 0 32px">
+      <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600&q=80" alt="Investment thesis: team working on strategy" />
+      <div class="bn-cap">Pre-seed · Seed · Early Series A</div>
+    </div>
+    <h3 class="display reveal" style="font-size:clamp(22px,2.4vw,30px);font-weight:700;letter-spacing:-0.01em;margin:20px 0 16px;color:var(--ink)">
+      Our investment thesis.
+    </h3>
+    <div class="thesis-table-wrap reveal">
+      <table class="thesis-table">
+        <thead>
+          <tr><th>Stage</th><th>Ticket size</th><th>Round size</th><th>Valuation</th><th>Profile</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Pre-seed</td>
+            <td>&lt; US$ 250K</td>
+            <td>&lt; US$ 1M</td>
+            <td>&lt; US$ 3M</td>
+            <td>Clear problem and solution. TAM &gt; US$ 1B.</td>
+          </tr>
+          <tr>
+            <td>Seed</td>
+            <td>&lt; US$ 500K</td>
+            <td>&lt; US$ 3M</td>
+            <td>&lt; US$ 10M</td>
+            <td>POCs completed, revenue or LOIs in execution.</td>
+          </tr>
+          <tr>
+            <td>Series A</td>
+            <td>&lt; US$ 2M</td>
+            <td>&lt; US$ 10M</td>
+            <td>&lt; US$ 30M</td>
+            <td>Validated model, targeting LatAm + USA or Europe.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- EVALUACION -->
+<section class="section-dark">
+  <div class="container">
+    <h2 class="display section-title reveal" style="text-align:center;margin:0 auto 32px;max-width:100%">
+      Due diligence · Structuring · <span class="grad">Alignment.</span>
+    </h2>
+    <div class="section-banner reveal" style="margin-bottom:50px">
+      <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1600&q=80" alt="Investment opportunity analysis" />
+    </div>
+    <div class="split">
+      <div class="reveal">
+        <div class="section-label">Investment evaluation</div>
+        <h2 class="display section-title">What we look at <span class="grad">before investing.</span></h2>
+        <p style="color:var(--ink-mid);font-size:16px;margin-bottom:4px">
+          We analyze the deal with investor discipline: structure, alignment and returns.
+        </p>
+        <ul class="check-list">
+          <li>Round size and valuation</li>
+          <li>Cap table</li>
+          <li>Ticket, terms and deal structuring</li>
+          <li>Shareholder agreement and ESOP allocation</li>
+          <li>Previous rounds and investors</li>
+          <li>Exit strategy (M&A, IPO)</li>
+          <li>Business plan: projected revenues and EBITDA</li>
+          <li>Potential multiples and timing to exit</li>
+        </ul>
+      </div>
+      <div class="reveal">
+        <div class="section-label">What we look for in the startup</div>
+        <h2 class="display section-title" style="font-size:clamp(28px,3.5vw,42px)">Founders <span class="grad">above all.</span></h2>
+        <div class="num-list">
+          <div>
+            <div class="num-badge">01</div>
+            <div>
+              <strong>Founders and team</strong>
+              <p>Technical skills, soft skills, character, track record, commitment, resilience and enthusiasm. We want talented and open people, willing to listen.</p>
+            </div>
+          </div>
+          <div>
+            <div class="num-badge">02</div>
+            <div>
+              <strong>Market and barriers</strong>
+              <p>Total addressable market, competition, barriers to entry, potential for patents and IP, scalability and geographic expansion.</p>
+            </div>
+          </div>
+          <div>
+            <div class="num-badge">03</div>
+            <div>
+              <strong>Clear use of funds</strong>
+              <p>Clear runway, estimated time to next round and well-defined use of proceeds. Sound legal structure of incorporation.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROL -->
+<section>
+  <div class="container">
+    <div class="reveal" style="max-width:900px">
+      <div class="section-label">Our role in the startup</div>
+      <h2 class="display section-title">From the board to <span class="grad">fundraising.</span></h2>
+    </div>
+    <div class="section-banner reveal" style="margin-top:32px">
+      <img src="https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=1600&q=80" alt="Founder presenting to investor board" />
+      <div class="bn-cap">Board · Strategy · Fundraising</div>
+    </div>
+    <div class="card-grid-3" style="margin-top:40px">
+      <div class="card reveal">
+        <div class="card-icon">⌘</div>
+        <h3>Board and business model</h3>
+        <p>We support founders from the Board or Strategic Board in defining and implementing the business model — that is where technical founders typically struggle most.</p>
+      </div>
+      <div class="card reveal">
+        <div class="card-icon">↑</div>
+        <h3>Next level</h3>
+        <p>Our mission is to take them to the next level, until the technology and business model are validated and start generating revenues. Growth is left to the next stage with specialized funds.</p>
+      </div>
+      <div class="card reveal">
+        <div class="card-icon">$</div>
+        <h3>Fundraising</h3>
+        <p>We help with the capital-raising strategy and usually take full or partial responsibility for the fundraising of the next round.</p>
+      </div>
+    </div>
+
+    <!-- Dealflow -->
+    <div style="margin-top:80px" class="reveal">
+      <div class="section-label">Dealflow generation</div>
+      <h2 class="display section-title" style="font-size:clamp(28px,3.5vw,42px)">Pipeline <span class="grad">across both hemispheres.</span></h2>
+      <div class="card-grid-2" style="margin-top:32px">
+        <div class="card">
+          <h3>Israel</h3>
+          <p>Direct contact with incubators, accelerators and funds that share dealflow from the rounds they lead. Personal contacts embedded in the ecosystem.</p>
+        </div>
+        <div class="card">
+          <h3>LatAm</h3>
+          <p>Allied funds, incubators, demo days we attend, and startups referred by other portfolio companies.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio" class="section-dark">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Portfolio</div>
+      <h2 class="display section-title">Companies <span class="grad">we back.</span></h2>
+      <p class="section-sub">17 active investments in LatAm and Israel. Biotech, agrotech, deep tech, fintech, SaaS and energy.</p>
+    </div>
+
+    <div class="section-banner reveal">
+      <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1600&q=80" alt="Global presence: LatAm and Israel" />
+      <div class="bn-cap">13 in LatAm · 4 in Israel · 70+ co-investors</div>
+    </div>
+
+    <div class="portfolio-grid">
+      <a href="https://fixupweb.com/region" target="_blank" rel="noopener" class="pf-item reveal">
+        <span class="pf-badge">Exit</span>
+        <img class="pf-img" src="./LOGOS/Fixup.png" alt="FixUP">
+        <div class="pf-sector">Post-sale tech · LatAm</div>
+      </a>
+      <a href="https://armentavet.com/" target="_blank" rel="noopener" class="pf-item reveal">
+        <img class="pf-img" src="./LOGOS/Armenta.JPG" alt="Armenta">
+        <div class="pf-sector">Agrotech · Dairy</div>
+      </a>
+      <a href="https://www.skyloom.co/" target="_blank" rel="noopener" class="pf-item reveal">
+        <span class="pf-badge">Exit</span>
+        <img class="pf-img" src="./LOGOS/Skyloom.jpg" alt="Skyloom">
+        <div class="pf-sector">Space · Telecom</div>
+      </a>
+      <a href="https://sosv.com/company/caspr-biotech/" target="_blank" rel="noopener" class="pf-item reveal">
+        <span class="pf-badge">Exit</span>
+        <img class="pf-img" src="./LOGOS/Caspr.jpg" alt="Caspr">
+        <div class="pf-sector">Biotech · CRISPR</div>
+      </a>
+      <a href="https://www.calosense.com/" target="_blank" rel="noopener" class="pf-item reveal">
+        <img class="pf-img" src="./LOGOS/calosesnse new logo.jpg" alt="CaloSense">
+        <div class="pf-sector">Healthtech · RPM</div>
+      </a>
+      <a href="https://amaiproteins.com/" target="_blank" rel="noopener" class="pf-item reveal">
+        <img class="pf-img" src="./LOGOS/Amai.jpg" alt="Amai Proteins">
+        <div class="pf-sector">Foodtech · Biotech</div>
+      </a>
+      <a href="https://www.alkemy.org/" target="_blank" rel="noopener" class="pf-item reveal">
+        <img class="pf-img" src="./LOGOS/alkemy.jpg" alt="Alkemy">
+        <div class="pf-sector">Edtech · Dev training</div>
+      </a>
+      <a href="https://www.microgenesis.net/" target="_blank" rel="noopener" class="pf-item reveal">
+        <img class="pf-img" src="./LOGOS/Microgenesis.jpg" alt="Microgenesis">
+        <div class="pf-sector">Healthtech · Fertility</div>
+      </a>
+      <a href="https://www.stamm.bio/" target="_blank" rel="noopener" class="pf-item reveal">
+        <img class="pf-img" src="./LOGOS/STAMM.jpg" alt="Stamm">
+        <div class="pf-sector">Biomanufacturing</div>
+      </a>
+      <a href="https://www.idiotlab.io/" target="_blank" rel="noopener" class="pf-item reveal">
+        <img class="pf-img" src="./LOGOS/IDIOT.JPG" alt="I+D IoT Lab">
+        <div class="pf-sector">IoT · Retail</div>
+      </a>
+      <a href="https://kekoar.com/" target="_blank" rel="noopener" class="pf-item pf-keko reveal" style="background:#fff">
+        <img class="pf-img" src="./LOGOS/logo%20keko.JPG" alt="Keko" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <div class="pf-logo" style="color:#16A34A;display:none">KEKO</div>
+        <div class="pf-sector">Mobility · Car sharing</div>
+      </a>
+      <a href="https://xtralit.com/#start" target="_blank" rel="noopener" class="pf-item pf-xtralit reveal" style="background:#fff">
+        <img class="pf-img" src="./LOGOS/XtraLit.png" alt="XtraLit" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <div class="pf-logo" style="color:#16A34A;display:none">⚡ XtraLit</div>
+        <div class="pf-sector">Cleantech · Lithium</div>
+      </a>
+      <a href="https://somoslank.com/" target="_blank" rel="noopener" class="pf-item reveal" style="background:#fff">
+        <img class="pf-img" src="./LOGOS/Lank.jpg" alt="Lank">
+        <div class="pf-sector">Platform Sharing</div>
+      </a>
+      <a href="https://www.uramerica.co.uk/" target="_blank" rel="noopener" class="pf-item reveal" style="background:#fff">
+        <img class="pf-img" src="./LOGOS/logo%20uramerica.jpg" alt="Uramerica">
+        <div class="pf-sector">Uranium mining</div>
+      </a>
+      <a href="https://kona.xyz/" target="_blank" rel="noopener" class="pf-item reveal" style="background:#fff">
+        <img class="pf-img" src="./LOGOS/logo%20kona.jpg" alt="Kona">
+        <div class="pf-sector">Energy as a Service</div>
+      </a>
+      <a href="https://alkemio.tech/" target="_blank" rel="noopener" class="pf-item reveal" style="background:#fff">
+        <img class="pf-img" src="./LOGOS/logo%20alkemio.jpg" alt="Alkemio">
+        <div class="pf-sector">Rare-earth separation</div>
+      </a>
+      <a href="https://akua.la/es" target="_blank" rel="noopener" class="pf-item reveal" style="background:#fff">
+        <img class="pf-img" src="./LOGOS/logo%20akua.jpg" alt="Akua">
+        <div class="pf-sector">Fintech</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- BUSINESS DEVELOPMENT (SECONDARY) -->
+<section>
+  <div class="container reveal">
+    <div class="bd-banner">
+      <div class="bd-grid">
+        <div>
+          <div class="section-label">Business Development</div>
+          <h2 class="display" style="font-size:clamp(28px,3.5vw,42px);line-height:1.1;font-weight:700;margin-bottom:20px;letter-spacing:-0.02em;color:var(--ink)">
+            Beyond investing, <span class="grad">we execute on the ground.</span>
+          </h2>
+          <p style="color:var(--ink-mid);font-size:16px;line-height:1.65;margin-bottom:8px">
+            Our relationship with Israel started by representing Israeli companies in the region. Today we invest, but commercial execution in LatAm remains one of our strengths. For Israeli agrotech and deep-tech companies, we offer:
+          </p>
+          <ul class="bd-list" style="list-style:none;padding:0;margin:8px 0 0;display:flex;flex-direction:column;gap:10px">
+            <li style="display:flex;align-items:flex-start;gap:12px;color:var(--ink-mid);font-size:15px;line-height:1.5"><span style="flex:0 0 6px;height:6px;border-radius:50%;background:var(--accent);margin-top:9px"></span>Commercial deployment</li>
+            <li style="display:flex;align-items:flex-start;gap:12px;color:var(--ink-mid);font-size:15px;line-height:1.5"><span style="flex:0 0 6px;height:6px;border-radius:50%;background:var(--accent);margin-top:9px"></span>Paid pilots</li>
+            <li style="display:flex;align-items:flex-start;gap:12px;color:var(--ink-mid);font-size:15px;line-height:1.5"><span style="flex:0 0 6px;height:6px;border-radius:50%;background:var(--accent);margin-top:9px"></span>Pricing adaptation</li>
+            <li style="display:flex;align-items:flex-start;gap:12px;color:var(--ink-mid);font-size:15px;line-height:1.5"><span style="flex:0 0 6px;height:6px;border-radius:50%;background:var(--accent);margin-top:9px"></span>Regional alliances</li>
+            <li style="display:flex;align-items:flex-start;gap:12px;color:var(--ink-mid);font-size:15px;line-height:1.5"><span style="flex:0 0 6px;height:6px;border-radius:50%;background:var(--accent);margin-top:9px"></span>Strategic co-investment</li>
+            <li style="display:flex;align-items:flex-start;gap:12px;color:var(--ink-mid);font-size:15px;line-height:1.5"><span style="flex:0 0 6px;height:6px;border-radius:50%;background:var(--accent);margin-top:9px"></span>Representation · Distribution · Resellers</li>
+          </ul>
+        </div>
+        <div style="text-align:center">
+          <div style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:64px;line-height:1;color:var(--accent);letter-spacing:-0.04em">3</div>
+          <div style="color:var(--ink-dim);font-size:13px;letter-spacing:0.1em;text-transform:uppercase;margin-top:8px">companies currently represented</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EQUIPO -->
+<section id="equipo" class="section-dark">
+  <div class="container">
+    <div class="reveal" style="text-align:center;margin-bottom:40px">
+      <div class="section-label">Team</div>
+      <h2 class="display section-title" style="margin:0 auto">Corporate careers <span class="grad">+ investor mindset.</span></h2>
+      <p class="section-sub" style="margin-left:auto;margin-right:auto">Executives with long corporate careers in technology, telecommunications, retail, finance and industry across Argentina and LatAm.</p>
+    </div>
+
+    <div class="section-banner reveal">
+      <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1600&q=80" alt="Partners in strategic meeting" />
+      <div class="bn-cap">7 partners · decades of operating track record in LatAm</div>
+    </div>
+
+    <div class="team-grid">
+      <div class="team-card reveal">
+        <a class="li-badge" href="https://www.linkedin.com/in/diego-teubal-612245/" target="_blank" rel="noopener" aria-label="Diego Teubal's LinkedIn" title="Diego Teubal's LinkedIn">in</a>
+        <div class="team-photo">
+          <img src="./LOGOS/fotos%20founders%20v3/diego-teubal.png" alt="Diego Teubal">
+        </div>
+        <div class="team-name">Diego Teubal</div>
+      </div>
+      <div class="team-card reveal">
+        <a class="li-badge" href="https://www.linkedin.com/in/miguel-angel-gra%C3%B1a-35bb1143/?locale=en" target="_blank" rel="noopener" aria-label="Miguel Graña's LinkedIn" title="Miguel Graña's LinkedIn">in</a>
+        <div class="team-photo">
+          <img src="./LOGOS/fotos%20founders%20v3/miguel.png" alt="Miguel Graña">
+        </div>
+        <div class="team-name">Miguel Graña</div>
+      </div>
+      <div class="team-card reveal">
+        <a class="li-badge" href="https://www.linkedin.com/in/andres-perez-00b95b13/" target="_blank" rel="noopener" aria-label="Andres Perez's LinkedIn" title="Andres Perez's LinkedIn">in</a>
+        <div class="team-photo">
+          <img src="./LOGOS/fotos%20founders%20v3/andres.png" alt="Andres Perez">
+        </div>
+        <div class="team-name">Andres Perez</div>
+      </div>
+      <div class="team-card reveal">
+        <a class="li-badge" href="https://www.linkedin.com/in/martin-teubal-ba82b51/" target="_blank" rel="noopener" aria-label="Martin Teubal's LinkedIn" title="Martin Teubal's LinkedIn">in</a>
+        <div class="team-photo">
+          <img src="./LOGOS/fotos%20founders%20v3/martin.png" alt="Martin Teubal">
+        </div>
+        <div class="team-name">Martin Teubal</div>
+      </div>
+      <div class="team-card reveal">
+        <a class="li-badge" href="https://www.linkedin.com/in/daniel-aisenberg-3a50449/" target="_blank" rel="noopener" aria-label="Daniel Aisenberg's LinkedIn" title="Daniel Aisenberg's LinkedIn">in</a>
+        <div class="team-photo">
+          <img src="./LOGOS/fotos%20founders%20v3/daniel.png" alt="Daniel Aisenberg">
+        </div>
+        <div class="team-name">Daniel Aisenberg</div>
+      </div>
+      <div class="team-card reveal">
+        <a class="li-badge" href="https://www.linkedin.com/in/diego-h-zbar-1555041/" target="_blank" rel="noopener" aria-label="Diego Zbar's LinkedIn" title="Diego Zbar's LinkedIn">in</a>
+        <div class="team-photo">
+          <img src="./LOGOS/fotos%20founders%20v3/diego-zbar.jpg" alt="Diego Zbar">
+        </div>
+        <div class="team-name">Diego Zbar</div>
+      </div>
+      <div class="team-card reveal">
+        <a class="li-badge" href="https://www.linkedin.com/in/dario-fainguersch-9803a78/" target="_blank" rel="noopener" aria-label="Dario Fainguersch's LinkedIn" title="Dario Fainguersch's LinkedIn">in</a>
+        <div class="team-photo">
+          <img src="./LOGOS/fotos%20founders%20v3/dario.png" alt="Dario Fainguersch">
+        </div>
+        <div class="team-name">Dario Fainguersch</div>
+      </div>
+    
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="contacto" class="cta">
+  <div class="cta-inner reveal">
+    <div class="section-label">Contact</div>
+    <h2 class="display section-title" style="margin-left:auto;margin-right:auto;text-align:center">
+      Are you building something <span class="grad">ambitious?</span>
+    </h2>
+    <p>If you are building a pre-seed, seed or early Series A startup in LatAm or Israel, send us your deck and let us talk.</p>
+    <a href="mailto:info@dragonesvc.com" class="btn btn-primary">info@dragonesvc.com →</a>
+    <p style="margin-top:16px;font-size:13px;color:var(--ink-dim)">Buenos Aires · Tel Aviv</p>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-inner">
+    <div>© 2026 Dragones Venture Partners</div>
+    <div>
+      <a href="#">LinkedIn</a>
+      <a href="#">PitchBook</a>
+      <a href="#tesis">Thesis</a>
+      <a href="#portfolio">Portfolio</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
+  },{threshold:0.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // Link handler robusto — funciona en browser, en webview sandbox, y en file://
+  document.querySelectorAll('a.pf-item, a.team-photo').forEach(el=>{
+    el.addEventListener('click', function(e){
+      const href = this.getAttribute('href');
+      if(!href || href === '#') return;
+      e.preventDefault();
+      e.stopPropagation();
+      try {
+        const win = (window.top || window).open(href, '_blank', 'noopener,noreferrer');
+        if(!win || win.closed || typeof win.closed === 'undefined'){
+          window.location.href = href;
+        }
+      } catch(err){
+        window.location.href = href;
+      }
+    });
+  });
+
+  // Robust language-switcher navigation (handles file:// quirks with spaces)
+  document.querySelectorAll('.lang-switcher .lang-btn').forEach(function(el){
+    el.addEventListener('click', function(e){
+      var href = this.getAttribute('href');
+      if (!href || href === '#') return;
+      e.preventDefault();
+      try {
+        window.location.assign(href);
+      } catch(err) {
+        window.location.href = href;
+      }
+    });
+  });
+
+</script>
+</body>
+</html>
+          
