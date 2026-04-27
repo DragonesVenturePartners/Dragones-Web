@@ -54,7 +54,7 @@
   .nav-links a:hover{color:var(--ink)}
   .nav-cta{background:var(--accent);color:#fff!important;padding:9px 18px;border-radius:999px;font-weight:600}
   .nav-cta:hover{background:#0F2A5E}
-  @media(max-width:880px){.nav-links a:not(.nav-cta){display:none}}
+  @media(max-width:880px){.nav-links > a:not(.nav-cta){display:none}}
 
   /* HERO */
   .hero{min-height:92vh;display:flex;align-items:center;padding:200px 0 80px;position:relative}
@@ -402,8 +402,8 @@
 
   /* === Bilingual switcher === */
   .lang-es,.lang-en{display:inline}
-  body.lang-en .lang-es{display:none \!important}
-  body.lang-es .lang-en{display:none \!important}
+  body.lang-en .lang-es{display:none !important}
+  body.lang-es .lang-en{display:none !important}
   .lang-switcher{display:inline-flex;gap:6px;align-items:center;margin-left:14px;padding-left:14px;border-left:1px solid var(--line)}
   .lang-btn{display:inline-flex;flex-direction:column;align-items:center;gap:2px;padding:4px 6px;border:1px solid transparent;border-radius:6px;background:transparent;cursor:pointer;text-decoration:none;transition:background .15s ease,border-color .15s ease}
   .lang-btn:hover{background:rgba(22,60,112,0.06)}
@@ -483,7 +483,7 @@
           </span>
           <span class="flag-label">EN</span>
         </a>
-        <a href="index%20blanco.html" class="lang-btn" aria-label="Español">
+        <a href="index blanco.html" class="lang-btn" aria-label="Español">
           <span class="flag" aria-hidden="true">
             <svg viewBox="0 0 6 4" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
               <rect width="6" height="4" fill="#AA151B"/>
@@ -946,7 +946,7 @@
     <div>
       <a href="#">LinkedIn</a>
       <a href="#">PitchBook</a>
-      <a href="#tesis">Thesis</a>
+      <a href="#tesis">Tesis</a>
       <a href="#portfolio">Portfolio</a>
     </div>
   </div>
@@ -975,6 +975,18 @@
       }
     });
   });
+
+  // Robust language-switcher navigation (handles file:// quirks with spaces)
+  document.querySelectorAll('.lang-switcher .lang-btn').forEach(function(el){
+    el.addEventListener('click', function(e){
+      var href = this.getAttribute('href');
+      if (!href || href === '#') return;
+      e.preventDefault();
+      try { window.location.assign(href); }
+      catch(err) { window.location.href = href; }
+    });
+  });
+
 </script>
 </body>
 </html>
