@@ -513,7 +513,7 @@
         <a href="#portfolio" class="btn btn-ghost">Ver portfolio</a>
       </div>
     </div>
-    <div class="hero-visual reveal">
+    <div class="hero-visual">
       <img class="hero-img" alt="Puente de la Mujer, Puerto Madero (Calatrava)" src="./LOGOS/calatrava.jpg" />
       <div class="hero-caption">Buenos Aires · Tel Aviv · LatAm</div>
     </div>
@@ -980,4 +980,16 @@
   document.querySelectorAll('.lang-switcher .lang-btn').forEach(function(el){
     el.addEventListener('click', function(e){
       var href = this.getAttribute('href');
-      if (
+      if (!href || href === '#') return;
+      e.preventDefault();
+      try {
+        window.location.assign(href);
+      } catch(err) {
+        window.location.href = href;
+      }
+    });
+  });
+
+</script>
+</body>
+</html>
